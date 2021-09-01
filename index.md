@@ -6,7 +6,7 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 
 ### Markdown
 
-[This is a test](https://nbviewer.jupyter.org/github/ealvarezj/Exploring-Ebay-Car-Sales-Data/blob/master/Exploring%20Ebay%20Car%20Sales%20Data.ipynb)
+[This is a test](https://nbviewer.jupyter.org/github/ealvarezj/Exploring-Ebay-Car-Sales-Data/blob/master/Exploring%20Ebay%20Car%20Sales%20Data.ipynb){:target="_blank"}
 
 <a href="https://nbviewer.jupyter.org/github/ealvarezj/Exploring-Ebay-Car-Sales-Data/blob/master/Exploring%20Ebay%20Car%20Sales%20Data.ipynb" target="_blank">Open me in a new Window</a>
 
