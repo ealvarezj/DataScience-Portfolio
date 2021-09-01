@@ -6,6 +6,8 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 
 ### Markdown
 
+[This is a test](https://nbviewer.jupyter.org/github/ealvarezj/Exploring-Ebay-Car-Sales-Data/blob/master/Exploring%20Ebay%20Car%20Sales%20Data.ipynb)
+
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
 ```markdown
