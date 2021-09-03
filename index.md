@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Welcome to my Data-Science portfolio where I host some of my favorite projects related to Data Science and Data Analysis
 
 You can use the [editor on GitHub](https://github.com/ealvarezj/DataScience-Portfolio/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
