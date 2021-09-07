@@ -1,4 +1,4 @@
-## Using SQL to answer business questions [[more]](/DataScience-Portfolio/about)
+## Using SQL to answer business questions
 
 In this project I analyzed data from a music store saved as an SQLite database using only SQL and some python code for creating database connection functions and visualizations. Here is an image of the database schema. 
 
