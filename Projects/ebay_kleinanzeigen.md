@@ -4,7 +4,7 @@ In this project I explored the `Ebay Car Sales Dataset` from the [Ebay Kleinanze
 
 ![kleinanzeigen](/DataScience-Portfolio/images/kleinanzeigen.png)
 
-The analysis was done completely using python, specially using the `pandas` library for data manipulation. The goals of this project where:
+The analysis was done completely using python, specially using the `pandas` library for data manipulation. Some goals of this project where:
 
 - Data cleaning:
   - rename features in the dataset to a more complaint format (snakecase).
@@ -16,7 +16,7 @@ The analysis was done completely using python, specially using the `pandas` libr
   - Which car brands are more popular?
   - What is the mean mileage as well as the mean price for the top used cars brands?
   - Which are the most common brand/model combinations?
-  - Search for pattern in the mileage
+  - Search for patterns in the mileage.
   - Compare damaged and non-damaged cars from a selling point perspective. 
   
 
