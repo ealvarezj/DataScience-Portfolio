@@ -12,7 +12,7 @@ In this website you can find some projects related to Data-Science and Data Anal
 ----
 
 # Projects 
-## [Using SQL to answer business questions](/DataScience-Portfolio/about.md)
+## [Using SQL to answer business questions](/DataScience-Portfolio/about)
 
 In this project I analyzed data from a music store saved as an SQLite database using only SQL and some python code for creating database connection functions and visualizations. 
 
