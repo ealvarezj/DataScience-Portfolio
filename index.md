@@ -2,6 +2,9 @@ Hola!
 
 Welcome to my Data-Science portfolio where I host some of my favorite projects related to Data Science and Data Analysis.
 
+* Will be replaced with the ToC
+{:toc}
+
 I'm Elias from Berlin City, In my free time I love to learn and practice using Data Science to solve problems. From simple data analysis tasks using `Pandas` up to developing machine learning models using `scikit-learn`. My preferred tool for working with data is `Python`. I have proficiency in libraries like `pandas`, `numpy`, `matplotlib`, `seaborn`, `scikit-learn`. As well as querying languages like `SQL` and
 `PostgreSQL`. 
 
