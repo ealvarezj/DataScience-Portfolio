@@ -7,7 +7,7 @@ In this project I explored the `Ebay Car Sales Dataset` from the [Ebay Kleinanze
 The analysis was done completely using python, specially using the `pandas` library for data manipulation. Some goals of this project where:
 
 - Data cleaning:
-  - rename features in the dataset to a more complaint format (snakecase).
+  - Rename features in the dataset to a more complaint format (snakecase).
   - Remove columns that have no relevant information.
   - Parse dates to datetime format and some string represented columns to numeric values.
   - Identify and remove outliers.
