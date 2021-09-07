@@ -20,3 +20,5 @@ In this project I analyzed data from a music store saved as an SQLite database u
 
 ## 2. Exploring Ebay Kleinanzeigen car sales data. [[more]](/DataScience-Portfolio/Projects/ebay_kleinanzeigen)
 
+In this project I explored the `Ebay Car Sales Dataset` from the [Ebay Kleinanzeigen](https://www.ebay-kleinanzeigen.de/) German website, a division for classified advertisements' website with sections devoted to jobs, housing, services, community service, gigs, and cars. Similar to "Craiglist" in the United States. 
+
