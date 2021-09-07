@@ -3,7 +3,6 @@ Hola!
 Welcome to my Data-Science portfolio where I host some of my favorite projects related to Data Science and Data Analysis.
 
 
-
 I'm Elias from Berlin City, In my free time I love to learn and practice using Data Science to solve problems. From simple data analysis tasks using `Pandas` up to developing machine learning models using `scikit-learn`. My preferred tool for working with data is `Python`. I have proficiency in libraries like `pandas`, `numpy`, `matplotlib`, `seaborn`, `scikit-learn`. As well as querying languages like `SQL` and
 `PostgreSQL`. 
 
@@ -12,9 +11,12 @@ In this website you can find some projects related to Data-Science and Data Anal
 
 ----
 
-## Using SQL to answer business questions
+# Projects 
+## [Using SQL to answer business questions](/DataScience-Portfolio/about.md)
 
 In this project I analyzed data from a music store saved as an SQLite database using only SQL and some python code for creating database connection functions and visualizations. 
+
+
 
 <details><summary>CLICK ME</summary>
 <p>
