@@ -12,7 +12,11 @@ In this website you can find some projects related to Data-Science and Data Anal
 ----
 
 # Projects 
-## Using SQL to answer business questions [[more]](/DataScience-Portfolio/Projects/sql_advanced)
+
+---
+## 1. Using SQL to answer business questions. [[more]](/DataScience-Portfolio/Projects/sql_advanced)
 
 In this project I analyzed data from a music store saved as an SQLite database using only SQL and some python code for creating database connection functions and visualizations. 
+
+## 2. Exploring Ebay Kleinanzeigen car sales data. [[more]](/DataScience-Portfolio/Projects/ebay_kleinanzeigen)
 
