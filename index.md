@@ -22,3 +22,6 @@ In this project I analyzed data from a music store saved as an SQLite database u
 
 In this project I explored the `Ebay Car Sales Dataset` from the [Ebay Kleinanzeigen](https://www.ebay-kleinanzeigen.de/) German website, a division for classified advertisements' website with sections devoted to jobs, housing, services, community service, gigs, and cars. Similar to "Craiglist" in the United States. 
 
+## 3. Clean and analyze employee exit surveys. [[more]](/DataScience-Portfolio/Projects/exit_surveys)
+
+In this project I analyzed data from the Department of Education, Training and Employment (DETE) and the Technical and Further Education (TAFE) institute in Queensland, Australia.
