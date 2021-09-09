@@ -9,10 +9,20 @@
 </div>
 
 
-In this project I analyzed data from the Department of Education, Training and Employment (DETE) and the Technical and Further Education (TAFE) institute in Queensland, Australia.  Data is provided as .csv in my repository. 
+In this project I analyzed data from the Department of Education, Training and Employment [(DETE)](https://www.dese.gov.au/) and the Technical and Further Education [(TAFE)](https://tafeqld.edu.au/) institute in Queensland, Australia.  Data is provided as .csv in my repository. 
+
+TAFE institute            |  DETE Institute
+:-------------------------:|:-------------------------:
+![](/DataScience-Portfolio/images/200px-TAFE_Queensland_Logo.png)  |  ![](/DataScience-Portfolio/images/DETE_institute_logo.png)
+
 
 The aim was to answer the following questions:
 
-+ Are employees who only worked for the institutes for a short period of time resigning due to some kind of dissatisfaction? What about employees who have been there longer?
-+ Are younger employees resigning due to some kind of dissatisfaction? What about older employees?
+- Are employees who only worked for the institutes for a short period of time resigning due to some kind of dissatisfaction? What about employees who have been there longer?
+- Are younger employees resigning due to some kind of dissatisfaction? What about older employees?
+- Are younger employees resigning due to some kind of dissatisfaction? What about older employees?
+- How many people in each career stage resigned due to some kind of dissatisfaction?
+- How many people in each age group resigned due to some kind of dissatisfaction?
+- Did more employees in the **DETE** survey or **TAFE** survey end their employment because they were dissatisfied in some way? 
+
 
