@@ -13,8 +13,8 @@ In this project I analyzed data from the Department of Education, Training and E
 
 
 <p float="middle">
-  <img src="/DataScience-Portfolio/images/200px-TAFE_Queensland_Logo.png" width="50%" />
-  <img src="/DataScience-Portfolio/images/DETE_institute_logo.png" width="50%" /> 
+  <img src="/DataScience-Portfolio/images/200px-TAFE_Queensland_Logo.png" width="49%" />
+  <img src="/DataScience-Portfolio/images/DETE_institute_logo.png" width="49%" /> 
 </p>
 
 
