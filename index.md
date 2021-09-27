@@ -26,6 +26,6 @@ In this project I explored the `Ebay Car Sales Dataset` from the [Ebay Kleinanze
 
 In this project I analyzed data from the D`epartment of Education, Training and Employment (DETE)` and the `Technical and Further Education (TAFE) institute` in Queensland, Australia.
 
-## 3. Schools Test. [[more here!]](/DataScience-Portfolio/Projects/Schools)
+## 3. Exploring NYC Open Data. [[more here!]](/DataScience-Portfolio/Projects/Schools)
 
 In this project I fecthed and analyzed data from the `NYC Open Data` using their `socrata Data Platform API`. The Data of used contains records related to New York citie's public schools. Additionally, Geographical data was fechtched as `GEOJson` files and parsed in python using the `geopandas` library. 

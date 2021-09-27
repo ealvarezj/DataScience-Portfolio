@@ -1,4 +1,4 @@
-## Exploring NYC Open Data and Schools.
+## Exploring NYC Open Data.
 
 
 
@@ -25,7 +25,15 @@ In this project I analyzed New York City public schools data. Data about school 
 
 The SAT, or Scholastic Aptitude Test, is a test that high school seniors in the U.S. take every year. The SAT has three sections, each is worth 800 points. Colleges use the SAT to determine which students to admit. High average SAT scores are usually indicative of a good school.
 
-Due to the large diversity of races in NYC, the main aim is to find relationships between race and performance in schools. We would also like to see later on if wealth plays a role in school performance by adding data about wealth status in the different school districts in the city. First lets start by cleaning and reading the data. 
+<div>
+  <iframe id="inlineFrameExample"
+      title="Inline Frame Example"
+      width="300"
+      height="200"
+      src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik">
+  </iframe>
+</div>
+ 
   
 Some questions we would like to answer are:
 
