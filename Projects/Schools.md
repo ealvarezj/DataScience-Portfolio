@@ -30,7 +30,7 @@ The SAT, or Scholastic Aptitude Test, is a test that high school seniors in the 
       title="Inline Frame Example"
       width="800"
       height="300"
-      src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik">
+      src="https://data.cityofnewyork.us/Education/School-Districts/r8nu-ymqj">
   </iframe>
 </div>
  
