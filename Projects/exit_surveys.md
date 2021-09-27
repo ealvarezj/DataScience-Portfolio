@@ -4,7 +4,7 @@
 
  <div align="center">
 
-  **Run this project using:** [STATIC PREVIEW](https://nbviewer.jupyter.org/github/ealvarezj/Data-Science-Portfolio/blob/main/Clean_And_Analyze_Employee_Exit_Surveys/Clean_And_Analyze_Employee_Exit_Surveys.ipynb) or [![exit_survey](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ealvarezj/Data-Science-Portfolio/main?filepath=Clean_And_Analyze_Employee_Exit_Surveys/Clean_And_Analyze_Employee_Exit_Surveys.ipynb)
+  **Run this project using:** [STATIC PREVIEW](https://nbviewer.jupyter.org/github/ealvarezj/Data-Science-Portfolio/blob/main/Clean_And_Analyze_Employee_Exit_Surveys/Clean_And_Analyze_Employee_Exit_Surveys.ipynb) or [![exit_survey](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ealvarezj/binder_env/main?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fealvarezj%252FData-Science-Portfolio%26urlpath%3Dtree%252FData-Science-Portfolio%252FClean_And_Analyze_Employee_Exit_Surveys%252FClean_And_Analyze_Employee_Exit_Surveys.ipynb%26branch%3Dmain)
 
 </div>
 
