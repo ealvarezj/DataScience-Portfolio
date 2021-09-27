@@ -25,3 +25,7 @@ In this project I explored the `Ebay Car Sales Dataset` from the [Ebay Kleinanze
 ## 3. Clean and analyze employee exit surveys. [[more]](/DataScience-Portfolio/Projects/exit_surveys)
 
 In this project I analyzed data from the Department of Education, Training and Employment (DETE) and the Technical and Further Education (TAFE) institute in Queensland, Australia.
+
+## 3. Schools Test. [[more]](/DataScience-Portfolio/Projects/Schools)
+
+In this project I analyzed data from the Department of Education, Training and Employment (DETE) and the Technical and Further Education (TAFE) institute in Queensland, Australia.
