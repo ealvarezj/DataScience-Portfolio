@@ -22,8 +22,8 @@ This work tries to tackle, employing `Supervised Machine Learning`, the proposal
 </thead>
 <tbody>
 <tr>
-    <td><img src="https://www.dango-dienenthal.de/fileadmin/user_upload/applications/close-die-forging/DD-Gesenkschmiede_1.jpg" alt="drawing" width="300"/></td>
-    <td><img src="https://slideplayer.org/slide/1343508/3/images/12/Gesenkschmieden-Prinzipdarstellung%3A.jpg" alt="drawing" width="300"/></td>
+    <td><img src="https://www.dango-dienenthal.de/fileadmin/user_upload/applications/close-die-forging/DD-Gesenkschmiede_1.jpg" alt="drawing" width="400"/></td>
+    <td><img src="https://slideplayer.org/slide/1343508/3/images/12/Gesenkschmieden-Prinzipdarstellung%3A.jpg" alt="drawing" width="400"/></td>
 </tr>
 </tbody>
 </table>
@@ -51,3 +51,10 @@ Data availability has become nowadays a topic of high relevance for most compani
 
 
 ## Exploratory Data Analysis (EDA)
+
+Data analysis is a crucial step in any Machine Learning problem, is a way to introduce and understand data before moving further to the modeling process. Data analysis provides the analyst with important information about data types, relation between variables in a dataset, their shape, form, distribution as well as descriptive statistics. In data analysis patterns in the data can be discovered by means of numerical tests and visualization techniques. This is in fact one of the most time-consuming steps on any project, since it requires data to be consolidated and prepared for the analysis.
+
+
+<p align="center">
+    <img src="2021-09-29-16-33-39.png" alt="drawing" width="400"/>
+</p>
