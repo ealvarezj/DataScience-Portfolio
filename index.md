@@ -14,7 +14,7 @@ In this website you can find some projects related to Data-Science and Data Anal
 # Projects 
 
 
-{% include button.html url="http://www.google.com" %}
+{% include button.html button_name="My Button" button_class="primary" %}
 
 ---
 ## 1. Using SQL to answer business questions. [[more here!]](/DataScience-Portfolio/Projects/sql_advanced)
