@@ -13,6 +13,9 @@ In this website you can find some projects related to Data-Science and Data Anal
 
 # Projects 
 
+
+{% include button.html url="http://www.google.com" %}
+
 <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
 <a href="https://ealvarezj.github.io/DataScience-Portfolio/" class="btn">Projects</a
 
