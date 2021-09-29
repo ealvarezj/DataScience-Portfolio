@@ -58,3 +58,6 @@ Data analysis is a crucial step in any Machine Learning problem, is a way to int
 <p align="center">
     <img src="2021-09-29-16-33-39.png" alt="drawing" width="400"/>
 </p>
+
+
+{% include image.html url="2021-09-29-16-33-39.png" description="My cat, Robert Downey Jr." %}
