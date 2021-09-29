@@ -13,6 +13,7 @@ In this website you can find some projects related to Data-Science and Data Anal
 
 # Projects 
 
+
 ---
 ## 1. Using SQL to answer business questions. [[more here!]](/DataScience-Portfolio/Projects/sql_advanced)
 
