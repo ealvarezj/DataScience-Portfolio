@@ -13,6 +13,7 @@ This work tries to tackle, employing `Supervised Machine Learning`, the proposal
 `Closed die forging` belongs according to the German Institute for Standardisation DIN to the pressing forming processes besides indentation, rolling and open die forging. For the forging process, forging dies with the negative geometries are used. A preheated ingot is put between the dies, force is applied (e.g. forging hammer), the material starts to flow inside the die until the end geometry is filled. 
 
 
+
 Hydraulic Counterblow Hammer          |  Closed die forging process
 :-------------------------:|:-------------------------:
 <img src="https://www.dango-dienenthal.de/fileadmin/user_upload/applications/close-die-forging/DD-Gesenkschmiede_1.jpg" alt="drawing" width="300"/>  |  <img src="https://slideplayer.org/slide/1343508/3/images/12/Gesenkschmieden-Prinzipdarstellung%3A.jpg" alt="drawing" width="300"/>
