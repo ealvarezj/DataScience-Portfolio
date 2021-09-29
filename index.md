@@ -13,6 +13,8 @@ In this website you can find some projects related to Data-Science and Data Anal
 
 # Projects 
 
+<a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
+<a href="https://ealvarezj.github.io/DataScience-Portfolio/" class="btn">Projects</a
 
 ---
 ## 1. Using SQL to answer business questions. [[more here!]](/DataScience-Portfolio/Projects/sql_advanced)
