@@ -15,7 +15,7 @@ In this website you can find some projects related to Data-Science and Data Anal
 
 Mostly Data Analysis related projects covering `data cleaning and wrangling`, `Visualization`, `API data collection` and data analysis using `Python` and `SQL`.
 
-<button onclick="window.location.href='/data_analysis_projects';">Take me to the projects!</button>
+<button onclick="window.location.href='/DataScience-Portfolio/data_analysis_projects';">Take me to the projects!</button>
 
 ----
 
