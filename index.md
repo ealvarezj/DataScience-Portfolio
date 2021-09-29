@@ -14,7 +14,7 @@ In this website you can find some projects related to Data-Science and Data Anal
 # Projects 
 
 
-{% include button.html button_name="My Button" button_class="primary" %}
+<button onclick="window.location.href='https://bing.com';">Click</button>
 
 ---
 ## 1. Using SQL to answer business questions. [[more here!]](/DataScience-Portfolio/Projects/sql_advanced)
