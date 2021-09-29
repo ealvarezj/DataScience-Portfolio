@@ -1,7 +1,7 @@
 # Data Analysis Projects
 ---
 
-## 1. Using SQL to answer business questions. [[more here!]]({% link Projects/sql_advanced.md %})
+## 1. Using SQL to answer business questions. [[more here!]]({{ site.baseurl }}{% link Projects/sql_advanced.md %})
 
 In this project I analyzed data from a music store saved as a `SQLite database` using only SQL and some python code for creating database connection functions and visualizations. 
 
