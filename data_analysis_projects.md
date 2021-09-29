@@ -3,7 +3,7 @@
 
 ## 1. Using SQL to answer business questions. [[more here!]](/DataScience-Portfolio/Projects/sql_advanced)
 
-In this project I analyzed data from a music store saved as an `SQLite database` using only SQL and some python code for creating database connection functions and visualizations. 
+In this project I analyzed data from a music store saved as a `SQLite database` using only SQL and some python code for creating database connection functions and visualizations. 
 
 ## 2. Exploring Ebay Kleinanzeigen car sales data. [[more here!]](/DataScience-Portfolio/Projects/ebay_kleinanzeigen)
 
