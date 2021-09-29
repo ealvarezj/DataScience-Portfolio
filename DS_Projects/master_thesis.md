@@ -12,22 +12,23 @@ This work tries to tackle, employing `Supervised Machine Learning`, the proposal
 
 `Closed die forging` belongs according to the German Institute for Standardisation DIN to the pressing forming processes besides indentation, rolling and open die forging. For the forging process, forging dies with the negative geometries are used. A preheated ingot is put between the dies, force is applied (e.g. forging hammer), the material starts to flow inside the die until the end geometry is filled. 
 
-<center>
-    <table>
-    <thead>
-    <tr>
-        <th>Hydraulic Counterblow Hammer</th>
-        <th>Closed die forging process</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td><img src="https://www.dango-dienenthal.de/fileadmin/user_upload/applications/close-die-forging/DD-Gesenkschmiede_1.jpg" alt="drawing" width="300"/></td>
-        <td><img src="https://slideplayer.org/slide/1343508/3/images/12/Gesenkschmieden-Prinzipdarstellung%3A.jpg" alt="drawing" width="300"/></td>
-    </tr>
-    </tbody>
-    </table>
-</center>
+<div align="center">
+<table>
+<thead>
+<tr>
+    <th>Hydraulic Counterblow Hammer</th>
+    <th>Closed die forging process</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td><img src="https://www.dango-dienenthal.de/fileadmin/user_upload/applications/close-die-forging/DD-Gesenkschmiede_1.jpg" alt="drawing" width="300"/></td>
+    <td><img src="https://slideplayer.org/slide/1343508/3/images/12/Gesenkschmieden-Prinzipdarstellung%3A.jpg" alt="drawing" width="300"/></td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 Due to the way materials and especially steel aloys behave in the plasticity state (this is the state in which material deforms and can not return to its initial state) it is not possible using a generalized formula to calculate the required amount of energy and force needed to perform the forging process. The plastic deformation behavior from materials cannot be linearly explained. Depending on temperature, chemical composition of the material at varying strain rates, the amount of force needed to achieve the desired true strain varies. Below is a Comparison of flow curves for a C15 steel, with different temperatures and strain
 rates.  
@@ -41,5 +42,12 @@ Until now, the prediction of the materials' behaviour on the parts' geometry can
 
 ## Data availability
 
-Data availability has become nowadays a topic of high relevance for most companies. Technologies like Data Mining are used to find interesting patterns in data that might well already been there, stored and archived or being generated on a daily basis. The learning dataset is composed of data coming from different sources. All parameters where collected for 313 different products, for which all 19 features
-where available
+Data availability has become nowadays a topic of high relevance for most companies. Technologies like Data Mining are used to find interesting patterns in data that might well already been there, stored and archived or being generated on a daily basis. The learning dataset is composed of data coming from different sources. All parameters where collected for 313 different products, for which all 19 features where available. The resulting dataset is a mixture of continous and categorical variables. This dataset was used as the master dataset. Later on records from the feedback system where joined with the master dataset. 
+
+
+<p align="center">
+    <img src="2021-09-29-16-17-01.png" alt="drawing" width="500"/>
+</p>
+
+
+## Exploratory Data Analysis (EDA)
