@@ -23,6 +23,6 @@ Mostly Data Analysis related projects covering `data cleaning and wrangling`, `V
 
 Work related to my time as Data Science Working Student. Inclouding `Machine Learning` and `Data Science applications`
 
-<button onclick="window.location.href='https://bing.com';">Take me to the projects!</button>
+<button onclick="window.location.href='/DataScience-Portfolio/ml_projects';">Take me to the projects!</button>
 
 ---
