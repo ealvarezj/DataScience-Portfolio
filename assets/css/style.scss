@@ -6,3 +6,12 @@
 .page-header {
     background-image: linear-gradient(135deg, #6C67E7, #6FB4E6);
   }
+
+#div {
+    display: flex;
+    justify-content: center;
+}
+
+#table {
+    align-self: center;
+}
