@@ -1,6 +1,6 @@
 theme: jekyll-theme-cayman
 title: Data Science Portfolio
 description: Elias Alvarez Jaramillo
-# markdown: GFM
+markdown: kramdown
 layout: wide
 

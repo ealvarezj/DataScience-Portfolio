@@ -84,7 +84,6 @@ There are numerous regression algorithms already implemented in libraries like `
 
 
 | Model                           | MAE     | MSE      | RMSE    | R2      | RMSLE  | MAPE   | TT (Sec) |
-
 |---------------------------------|---------|----------|---------|---------|--------|--------|----------|
 | CatBoost Regressor              | 4.2354  | 50.8014  | 6.9793  | 0.8645  | 0.2672 | 0.2042 | 1.618    |
 | Extra Trees Regressor           | 4.3761  | 56.3788  | 7.2692  | 0.8534  | 0.2778 | 0.2097 | 0.029    |
