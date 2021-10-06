@@ -16,7 +16,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Exploring Ebay Kleinanzeigen car sales data." />
 <script type="application/ld+json">
-{"@type":"WebPage","url":"http://localhost:4000/Projects/ebay_kleinanzeigen.html","description":"Elias Alvarez Jaramillo","headline":"Exploring Ebay Kleinanzeigen car sales data.","@context":"https://schema.org"}</script>
+{"@type":"WebPage","headline":"Exploring Ebay Kleinanzeigen car sales data.","url":"http://localhost:4000/Projects/ebay_kleinanzeigen.html","description":"Elias Alvarez Jaramillo","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="stylesheet" href="/assets/css/style.css?v=5b99dde6a7d0654c9618b90d57d5c8d954478f18">
+    <link rel="stylesheet" href="/assets/css/style.css?v=04395c5c85b38a700f57b85d3c11140f789b2e83">
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
 <!-- Setup Google Analytics -->
@@ -56,32 +56,38 @@
 
     <main id="content" class="main-content" role="main">
       <h2 id="exploring-ebay-kleinanzeigen-car-sales-data">Exploring Ebay Kleinanzeigen car sales data.</h2>
-<p><strong>Run this project using:</strong> <a href="https://nbviewer.jupyter.org/github/ealvarezj/Data-Science-Portfolio/blob/main/Exploring_Ebay_Car_Sales_Data/Exploring_Ebay_Car_Sales_Data.ipynb">STATIC PREVIEW</a> or <a href="https://mybinder.org/v2/gh/ealvarezj/binder_env/main?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fealvarezj%252FData-Science-Portfolio%26urlpath%3Dtree%252FData-Science-Portfolio%252FExploring_Ebay_Car_Sales_Data%252FExploring_Ebay_Car_Sales_Data.ipynb%26branch%3Dmain"><img src="https://mybinder.org/badge_logo.svg" alt="sql" /></a>
-{: .page-center-class}</p>
+
+<p class="page-center-class"><strong>Run this project using:</strong> <a href="https://nbviewer.jupyter.org/github/ealvarezj/Data-Science-Portfolio/blob/main/Exploring_Ebay_Car_Sales_Data/Exploring_Ebay_Car_Sales_Data.ipynb">STATIC PREVIEW</a> or <a href="https://mybinder.org/v2/gh/ealvarezj/binder_env/main?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fealvarezj%252FData-Science-Portfolio%26urlpath%3Dtree%252FData-Science-Portfolio%252FExploring_Ebay_Car_Sales_Data%252FExploring_Ebay_Car_Sales_Data.ipynb%26branch%3Dmain"><img src="https://mybinder.org/badge_logo.svg" alt="sql" /></a></p>
+
 <!-- ![sql](https://mybinder.org/badge_logo.svg) -->
-<p>In this project I explored the <code>Ebay Car Sales Dataset</code> from the <a href="https://www.ebay-kleinanzeigen.de/">Ebay Kleinanzeigen</a> German website, a division for classified advertisements' website with sections devoted to jobs, housing, services, community service, gigs, and cars. Similar to &quot;Craiglist&quot; in the United States. The dataset was crawled from the website directly.</p>
+
+<p>In this project I explored the <code class="language-plaintext highlighter-rouge">Ebay Car Sales Dataset</code> from the <a href="https://www.ebay-kleinanzeigen.de/">Ebay Kleinanzeigen</a> German website, a division for classified advertisements’ website with sections devoted to jobs, housing, services, community service, gigs, and cars. Similar to “Craiglist” in the United States. The dataset was crawled from the website directly.</p>
+
 <p><img src="/DataScience-Portfolio/images/kleinanzeigen.png" alt="kleinanzeigen" /></p>
-<p>The analysis was done completely using python, specially using the <code>pandas</code> library for data manipulation. Some goals of this project where:</p>
+
+<p>The analysis was done completely using python, specially using the <code class="language-plaintext highlighter-rouge">pandas</code> library for data manipulation. Some goals of this project where:</p>
+
 <ul>
-<li>Data cleaning:
-<ul>
-<li>Rename features in the dataset to a more complaint format (snakecase).</li>
-<li>Remove columns that have no relevant information.</li>
-<li>Parse dates to datetime format and some string represented columns to numeric values.</li>
-<li>Identify and remove outliers.</li>
-<li>Identify data that could to be translated from German to English.</li>
+  <li>Data cleaning:
+    <ul>
+      <li>Rename features in the dataset to a more complaint format (snakecase).</li>
+      <li>Remove columns that have no relevant information.</li>
+      <li>Parse dates to datetime format and some string represented columns to numeric values.</li>
+      <li>Identify and remove outliers.</li>
+      <li>Identify data that could to be translated from German to English.</li>
+    </ul>
+  </li>
+  <li>Answering questions like:
+    <ul>
+      <li>Which car brands are more popular?</li>
+      <li>What is the mean mileage as well as the mean price for the top used cars brands?</li>
+      <li>Which are the most common brand/model combinations?</li>
+      <li>Search for patterns in the mileage.</li>
+      <li>Compare damaged and non-damaged cars from a selling point perspective.</li>
+    </ul>
+  </li>
 </ul>
-</li>
-<li>Answering questions like:
-<ul>
-<li>Which car brands are more popular?</li>
-<li>What is the mean mileage as well as the mean price for the top used cars brands?</li>
-<li>Which are the most common brand/model combinations?</li>
-<li>Search for patterns in the mileage.</li>
-<li>Compare damaged and non-damaged cars from a selling point perspective.</li>
-</ul>
-</li>
-</ul>
+
 
 
 

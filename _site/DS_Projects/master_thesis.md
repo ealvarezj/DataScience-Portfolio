@@ -108,26 +108,35 @@ There are numerous regression algorithms already implemented in libraries like `
 
 As we can see, benchmarking different models with their standard configurations gives us a pretty good start in terms of accuracy. Accuracy was measured using the **RMSE** (Root Mean Squared Error) metric. These models have still the potential to be optimized. Model optimization goes beyond numerical optimization e.g. **Grid Search** or **Random Search**. Performance of a model can also be improved by carefully performing **feature engineering** and **ensenmbling or stacking** models together. In the table above is possible to see, that relatively simple algorithms like **Random Forest** perform better than more complex and modern approaches like **LGBM (Light Gradient Boosting Machine)**. In fact, the difference in performance between the Random forest Regressor and the CatBoost Regressor is marginal in terms of the RMSE (measured in minutes) one small difference is the training time required for CatBoost is significantly higher, which for the final size of the dataset does not make a lot of difference but if scaled could potentially present an issue.
 
-### Hyperparameter Optimization and Dimensionality reduction
+### Hyperparameter Optimization
 
 Since Random Forest is supported natively by **scikit-learn** we can make use of the **GridSearchCV** and **RandomSearhCV** classes to perform Hyperparameter Optimization. The following table show the optimization proocess for the Random Forest Regressor estimator.
 
-
 | Hyperparameter                                   | Value range                                                                             | GSearch        | RSearch        |
 |--------------------------------------------------|-----------------------------------------------------------------------------------------|----------------|----------------|
-| Max. depth                                       | $$ \{None, [2,10] \in \mathbb{Z}\} $$                                                       | 8           | None           |
-| Max. features                                    | $$ \{auto, sqrt, log2\} $$                                                          | sqrt           | log2           |
-| Max. leaf nodes                                  | $$ \{None, [2,10] \in \mathbb{Z}\} $$                                                       | None           | None           |
-| Criterion                                        | $$ \{mse, friedeman mse, mae, poisson\} $$                                                | friedman mse   | mae            |
-| ccp alpha                                        | $$ [0, 0.9] \in \mathbb{R} $$                                                               | 0.1          | 0           |
+| Max. depth                                       | $$ \{None, [2,10] \in \mathbb{Z}\} $$                                                   | 8              | None           |
+| Max. features                                    | $$ \{auto, sqrt, log2\} $$                                                              | sqrt           | log2           |
+| Max. leaf nodes                                  | $$ \{None, [2,10] \in \mathbb{Z}\} $$                                                   | None           | None           |
+| Criterion                                        | $$ \{mse, friedeman mse, mae, poisson\} $$                                              | friedman mse   | mae            |
+| ccp alpha                                        | $$ [0, 0.9] \in \mathbb{R} $$                                                           | 0.1          | 0           |
 
-|**Metric**                 | **Resources**                                                                              |                |                |
+First a **hyperparameter space** was defined. This set of parameter combinations are used by either constructing the cartesian product of all combinations in case of Grid Search. Which is a Brute force approach to optimization where all possible combinations are evaluated. Or using **Random Search**, which randomly (in this case) samples from the hyperparameter space. The results with a 10-fold cross validation are summarized below.
+
+|**Metric**                 | **Resources**                                                                              | GSearch        | RSearch        |
 |---------------------------|--------------------------------------------------------------------------------------------|----------------|----------------|
-|$$ R^{2} $$ with $$ CV = 10 $$       | Performed on a machine  with 12 CPU cores at 4.3 Ghz and  16 Gb of RAM | 0.8562         | 0.8574         |
-|$$ RMSE $$ with $$ CV = 10 $$        |                                                                                         | **8.089**          | **8.104**          |
-|Number of fits with $$ CV = 5 $$ |                                                                                         | 48600          | 2500           |
-|Compute time (seconds)  |                                                                                         | 768            | 40.3           |
-|**Baseline model**         | $$ \mathbf{RMSE} $$                                                                         | $$ \mathbf{R^2} $$ | $$ \mathbf{MAE} $$ |
-| Random Forest regressor                          | $$ 8.4708 $$                                                                                | $$ 0.8428 $$       | $$ 71.7549 $$      |
+|$$ R^{2} $$ with $$ CV = 10 $$       | Performed on a machine  with 12 CPU cores at 4.3 Ghz and  16 Gb of RAM           | 0.8737         | 0.8723         |
+|$$ RMSE $$ with $$ CV = 10 $$        |                                                                                  | **6.510**      | **6.541**      |
+|Number of fits with $$ CV = 10 $$ |                                                                                     | 48600          | 2500           |
+|Compute time (seconds)  |                                                                                               | 768            | 40.3           |
 
+Taking a look at the results after cross validation is possible to see that, the optimization using either Grid Search or Random Search improved the performance of the model by almost over a minute in reduction in the RMSE (See baseline/unoptimized model in table below). Grid Search uses more ressources since it has to fit a larger number of combinations. Random search from the other side requires a fraction of the number of repetitions needed by Grid Search, thus achieving a similar result. At this point there is not much that one could do to the model in terms of hyperparameter optimization. The next step was to see if modifying the feature space could result in an increase of performance. 
+
+
+|**Baseline model**         | $$ \mathbf{RMSE} $$                                                                        | $$ \mathbf{R^2} $$ | $$ \mathbf{MAE} $$ |
+|---------------------------|--------------------------------------------------------------------------------------------|----------------|----------------|
+| Random Forest regressor                          |  7.4328                                                                                 | 0.8481        |  4.4652      |
+
+### Dimensionality reduction
+
+For the dataset multiple dimensionality reduction (PCA, LASSO) and feature selection techniques (Model based selection, Recursive feature elimination)
 

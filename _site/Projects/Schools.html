@@ -16,7 +16,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Exploring NYC Open Data." />
 <script type="application/ld+json">
-{"@type":"WebPage","url":"http://localhost:4000/Projects/Schools.html","description":"Elias Alvarez Jaramillo","headline":"Exploring NYC Open Data.","@context":"https://schema.org"}</script>
+{"@type":"WebPage","headline":"Exploring NYC Open Data.","url":"http://localhost:4000/Projects/Schools.html","description":"Elias Alvarez Jaramillo","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="stylesheet" href="/assets/css/style.css?v=5b99dde6a7d0654c9618b90d57d5c8d954478f18">
+    <link rel="stylesheet" href="/assets/css/style.css?v=04395c5c85b38a700f57b85d3c11140f789b2e83">
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
 <!-- Setup Google Analytics -->
@@ -56,34 +56,37 @@
 
     <main id="content" class="main-content" role="main">
       <h2 id="exploring-nyc-open-data">Exploring NYC Open Data.</h2>
-<p><strong>Run this project using:</strong> <a href="https://nbviewer.jupyter.org/github/ealvarezj/Data-Science-Portfolio/blob/main/Guided_Project_Schools/Schools.ipynb">STATIC PREVIEW</a> or <a href="https://mybinder.org/v2/gh/ealvarezj/binder_env/main?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fealvarezj%252FData-Science-Portfolio%26urlpath%3Dtree%252FData-Science-Portfolio%252FGuided_Project_Schools%252FSchools.ipynb%26branch%3Dmain"><img src="https://mybinder.org/badge_logo.svg" alt="schools" /></a>
-{: .page-center-class}</p>
+
+<p class="page-center-class"><strong>Run this project using:</strong> <a href="https://nbviewer.jupyter.org/github/ealvarezj/Data-Science-Portfolio/blob/main/Guided_Project_Schools/Schools.ipynb">STATIC PREVIEW</a> or <a href="https://mybinder.org/v2/gh/ealvarezj/binder_env/main?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fealvarezj%252FData-Science-Portfolio%26urlpath%3Dtree%252FData-Science-Portfolio%252FGuided_Project_Schools%252FSchools.ipynb%26branch%3Dmain"><img src="https://mybinder.org/badge_logo.svg" alt="schools" /></a></p>
+
 <p><img src="https://opendata.cityofnewyork.us/wp-content/themes/opendata-wp/assets/img/nyc-open-data-logo.svg" alt="" /></p>
+
 <p>In this project I analyzed New York City public schools data. Data about school grades, class sizes, dropout and graduation rates is available in the NYC OpenData website. The objective of this project is to joined multiple dataset containing different type of data about schools and find possible correlations between exam results and demographics. The data used consist of the following datasets:</p>
+
 <ul>
-<li><a href="https://data.cityofnewyork.us/Education/SAT-Results/f9bf-2cp4">SAT scores by school</a> - SAT scores for each high school in New York City</li>
-<li><a href="https://data.cityofnewyork.us/Education/School-Attendance-and-Enrollment-Statistics-by-Dis/7z8d-msnt">School attendance</a> - Attendance information for each school in New York City</li>
-<li><a href="https://data.cityofnewyork.us/Education/2010-2011-Class-Size-School-level-detail/urz7-pzb3">Class size</a> - Information on class size for each school</li>
-<li><a href="https://data.cityofnewyork.us/Education/AP-College-Board-2010-School-Level-Results/itfs-ms3e">AP test results</a> - Advanced Placement (AP) exam results for each high school (passing an optional AP exam in a particular subject can earn a student college credit in that subject)</li>
-<li><a href="https://data.cityofnewyork.us/Education/Graduation-Outcomes-Classes-Of-2005-2010-School-Le/vh2h-md7a">Graduation outcomes</a> - The percentage of students who graduated and other outcome information</li>
-<li><a href="https://data.cityofnewyork.us/Education/School-Demographics-and-Accountability-Snapshot-20/ihfw-zy9j">Demographics</a> - Demographic information for each school</li>
-<li><a href="https://data.cityofnewyork.us/Education/NYC-School-Survey-2011/mnz3-dyi8">School survey</a> - Surveys of parents, teachers, and students at each school</li>
+  <li><a href="https://data.cityofnewyork.us/Education/SAT-Results/f9bf-2cp4">SAT scores by school</a> - SAT scores for each high school in New York City</li>
+  <li><a href="https://data.cityofnewyork.us/Education/School-Attendance-and-Enrollment-Statistics-by-Dis/7z8d-msnt">School attendance</a> - Attendance information for each school in New York City</li>
+  <li><a href="https://data.cityofnewyork.us/Education/2010-2011-Class-Size-School-level-detail/urz7-pzb3">Class size</a> - Information on class size for each school</li>
+  <li><a href="https://data.cityofnewyork.us/Education/AP-College-Board-2010-School-Level-Results/itfs-ms3e">AP test results</a> - Advanced Placement (AP) exam results for each high school (passing an optional AP exam in a particular subject can earn a student college credit in that subject)</li>
+  <li><a href="https://data.cityofnewyork.us/Education/Graduation-Outcomes-Classes-Of-2005-2010-School-Le/vh2h-md7a">Graduation outcomes</a> - The percentage of students who graduated and other outcome information</li>
+  <li><a href="https://data.cityofnewyork.us/Education/School-Demographics-and-Accountability-Snapshot-20/ihfw-zy9j">Demographics</a> - Demographic information for each school</li>
+  <li><a href="https://data.cityofnewyork.us/Education/NYC-School-Survey-2011/mnz3-dyi8">School survey</a> - Surveys of parents, teachers, and students at each school</li>
 </ul>
+
 <p>The SAT, or Scholastic Aptitude Test, is a test that high school seniors in the U.S. take every year. The SAT has three sections, each is worth 800 points. Colleges use the SAT to determine which students to admit. High average SAT scores are usually indicative of a good school.</p>
+
 <div>
-  <iframe id="inlineFrameExample"
-      title="Inline Frame Example"
-      width="800"
-      height="300"
-      src="https://schoolzones.us/nyc/">
+  <iframe id="inlineFrameExample" title="Inline Frame Example" width="800" height="300" src="https://schoolzones.us/nyc/">
   </iframe>
 </div>
+
 <p>Some questions we would like to answer are:</p>
+
 <ul>
-<li>Is there a correlation between class size and SAT scores?</li>
-<li>Which neighborhoods have the best schools?</li>
-<li>Is there a relationship between socio-economical status and performance on SAT scores?, Are students going to schools in more wealthy neighborhoods more successful.</li>
-<li>Investigate the differences between parent, teacher, and student responses to surveys.</li>
+  <li>Is there a correlation between class size and SAT scores?</li>
+  <li>Which neighborhoods have the best schools?</li>
+  <li>Is there a relationship between socio-economical status and performance on SAT scores?, Are students going to schools in more wealthy neighborhoods more successful.</li>
+  <li>Investigate the differences between parent, teacher, and student responses to surveys.</li>
 </ul>
 
 

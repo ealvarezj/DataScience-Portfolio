@@ -16,7 +16,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Using SQL to answer business questions" />
 <script type="application/ld+json">
-{"@type":"WebPage","url":"http://localhost:4000/Projects/sql_advanced.html","description":"Elias Alvarez Jaramillo","headline":"Using SQL to answer business questions","@context":"https://schema.org"}</script>
+{"@type":"WebPage","headline":"Using SQL to answer business questions","url":"http://localhost:4000/Projects/sql_advanced.html","description":"Elias Alvarez Jaramillo","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="stylesheet" href="/assets/css/style.css?v=5b99dde6a7d0654c9618b90d57d5c8d954478f18">
+    <link rel="stylesheet" href="/assets/css/style.css?v=04395c5c85b38a700f57b85d3c11140f789b2e83">
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
 <!-- Setup Google Analytics -->
@@ -56,38 +56,40 @@
 
     <main id="content" class="main-content" role="main">
       <h2 id="using-sql-to-answer-business-questions">Using SQL to answer business questions</h2>
-<p><strong>Run this project using:</strong> <a href="https://nbviewer.jupyter.org/github/ealvarezj/Data-Science-Portfolio/blob/main/SQL_Projects/SQL_Music_Store/SQL_Music_Store_Project.ipynb">STATIC PREVIEW</a> or <a href="https://mybinder.org/v2/gh/ealvarezj/binder_env/main?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fealvarezj%252FData-Science-Portfolio%26urlpath%3Dtree%252FData-Science-Portfolio%252FSQL_Projects%252FSQL_Music_Store%252FSQL_Music_Store_Project.ipynb%26branch%3Dmain"><img src="https://mybinder.org/badge_logo.svg" alt="sql" /></a>
-{: .page-center-class}</p>
+
+<p class="page-center-class"><strong>Run this project using:</strong> <a href="https://nbviewer.jupyter.org/github/ealvarezj/Data-Science-Portfolio/blob/main/SQL_Projects/SQL_Music_Store/SQL_Music_Store_Project.ipynb">STATIC PREVIEW</a> or <a href="https://mybinder.org/v2/gh/ealvarezj/binder_env/main?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fealvarezj%252FData-Science-Portfolio%26urlpath%3Dtree%252FData-Science-Portfolio%252FSQL_Projects%252FSQL_Music_Store%252FSQL_Music_Store_Project.ipynb%26branch%3Dmain"><img src="https://mybinder.org/badge_logo.svg" alt="sql" /></a></p>
+
 <p>In this project I analyzed data from a music store saved as an SQLite database. Here is an image of the database schema.</p>
+
 <!-- <details><summary>CLICK ME</summary>
 <p> -->
+
 <p><img src="/DataScience-Portfolio/images/chinook-schema.svg" alt="db_structure" /></p>
+
 <!-- </p>
 </details> -->
+
 <p>The analysis was done completely using only SQL and some python code for creating database connection functions and visualizations. Some goals of this project where:</p>
+
 <ul>
-<li>
-<p>Querying data from SQlite and parsing the output using <code>pandas</code> to a <code>pandas.DataFrame</code>.</p>
-</li>
-<li>
-<p>Use common SQL methods like <code>INNER, LEFT JOINS</code> <code>Aggregation functions</code> and <code>Subqueries</code></p>
-</li>
-<li>
-<p>Use more advanced SQL methods like <code>common table expressions (CTE)</code>, <code>VIEWS</code>, <code>CASE statements</code> as well as <code>UNION</code> and <code>EXCEPT</code> operations.</p>
-</li>
-<li>
-<p>Answering questions like:</p>
-<ul>
-<li>What is the most selling genre in the USA?, and using the results to make decisions about new label contracts.</li>
-<li>Compare sales agents' performance.</li>
-<li>Analyze sales by country.</li>
-<li>Inspecting the behavior and preferences of customers regarding complete album purchase orders or mixed track orders.</li>
-<li>Searching for the most common artist for each playlist</li>
-<li>Finding out how much of the tracks in the store have been bought at least one time, and which have not been bought yet.</li>
-<li>Look at popularity and revenue based on music audio files format.</li>
+  <li>Querying data from SQlite and parsing the output using <code class="language-plaintext highlighter-rouge">pandas</code> to a <code class="language-plaintext highlighter-rouge">pandas.DataFrame</code>.</li>
+  <li>Use common SQL methods like <code class="language-plaintext highlighter-rouge">INNER, LEFT JOINS</code> <code class="language-plaintext highlighter-rouge">Aggregation functions</code> and <code class="language-plaintext highlighter-rouge">Subqueries</code></li>
+  <li>
+    <p>Use more advanced SQL methods like <code class="language-plaintext highlighter-rouge">common table expressions (CTE)</code>, <code class="language-plaintext highlighter-rouge">VIEWS</code>, <code class="language-plaintext highlighter-rouge">CASE  statements</code> as well as <code class="language-plaintext highlighter-rouge">UNION</code> and <code class="language-plaintext highlighter-rouge">EXCEPT</code> operations.</p>
+  </li>
+  <li>Answering questions like:
+    <ul>
+      <li>What is the most selling genre in the USA?, and using the results to make decisions about new label contracts.</li>
+      <li>Compare sales agents’ performance.</li>
+      <li>Analyze sales by country.</li>
+      <li>Inspecting the behavior and preferences of customers regarding complete album purchase orders or mixed track orders.</li>
+      <li>Searching for the most common artist for each playlist</li>
+      <li>Finding out how much of the tracks in the store have been bought at least one time, and which have not been bought yet.</li>
+      <li>Look at popularity and revenue based on music audio files format.</li>
+    </ul>
+  </li>
 </ul>
-</li>
-</ul>
+
 <!-- Binder latest URl
 
 https://mybinder.org/v2/gh/ealvarezj/Data-Science-Portfolio/main?filepath=SQL_Projects/SQL_Music_Store/SQL_Music_Store_Project.ipynb
