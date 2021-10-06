@@ -110,7 +110,7 @@ As we can see, benchmarking different models with their standard configurations 
 
 ### Hyperparameter Optimization and Dimensionality reduction
 
-Since Random Forest is supported natively by **scikit-learn** we can make use of the **GridSearchCV** and **RandomSearhCV** classes to perform Hyperparameter Optimization. The following table show the optimization proocess for the Random Forest Regressor estimator. $$ 4=3 $$
+Since Random Forest is supported natively by **scikit-learn** we can make use of the **GridSearchCV** and **RandomSearhCV** classes to perform Hyperparameter Optimization. The following table show the optimization proocess for the Random Forest Regressor estimator.
 
 
 | Hyperparameter                                   | Value range                                                                             | GSearch        | RSearch        |
@@ -120,9 +120,11 @@ Since Random Forest is supported natively by **scikit-learn** we can make use of
 | Max. leaf nodes                                  | $$ \{None, [2,10] \in \mathbb{Z}\} $$                                                       | None           | None           |
 | Criterion                                        | $$ \{mse, friedeman mse, mae, poisson\} $$                                                | friedman mse   | mae            |
 | ccp alpha                                        | $$ [0, 0.9] \in \mathbb{R} $$                                                               | 0.1          | 0           |
+
 |**Metric**                 | **Resources**                                                                              |                |                |
+|---------------------------|--------------------------------------------------------------------------------------------|----------------|----------------|
 |$$ R^{2} $$ with $$ CV = 10 $$       | Performed on a machine  with 12 CPU cores at 4.3 Ghz and  16 Gb of RAM | 0.8562         | 0.8574         |
-|$$ RMSE $$ with $$ CV = 10 $$        |                                                                                         | 8.089          | 8.104          |
+|$$ RMSE $$ with $$ CV = 10 $$        |                                                                                         | **8.089**          | **8.104**          |
 |Number of fits with $$ CV = 5 $$ |                                                                                         | 48600          | 2500           |
 |Compute time (seconds)  |                                                                                         | 768            | 40.3           |
 |**Baseline model**         | $$ \mathbf{RMSE} $$                                                                         | $$ \mathbf{R^2} $$ | $$ \mathbf{MAE} $$ |
