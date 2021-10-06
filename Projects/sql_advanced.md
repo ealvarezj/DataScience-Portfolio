@@ -1,11 +1,8 @@
 ## Using SQL to answer business questions
 
 
-<div align="center">
-
-  **Run this project using:** [STATIC PREVIEW](https://nbviewer.jupyter.org/github/ealvarezj/Data-Science-Portfolio/blob/main/SQL_Projects/SQL_Music_Store/SQL_Music_Store_Project.ipynb) or [![sql](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ealvarezj/binder_env/main?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fealvarezj%252FData-Science-Portfolio%26urlpath%3Dtree%252FData-Science-Portfolio%252FSQL_Projects%252FSQL_Music_Store%252FSQL_Music_Store_Project.ipynb%26branch%3Dmain)
-
-</div>
+**Run this project using:** [STATIC PREVIEW](https://nbviewer.jupyter.org/github/ealvarezj/Data-Science-Portfolio/blob/main/SQL_Projects/SQL_Music_Store/SQL_Music_Store_Project.ipynb) or [![sql](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ealvarezj/binder_env/main?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fealvarezj%252FData-Science-Portfolio%26urlpath%3Dtree%252FData-Science-Portfolio%252FSQL_Projects%252FSQL_Music_Store%252FSQL_Music_Store_Project.ipynb%26branch%3Dmain)
+{: .page-center-class}
 
 In this project I analyzed data from a music store saved as an SQLite database. Here is an image of the database schema. 
 

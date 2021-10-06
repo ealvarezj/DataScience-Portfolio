@@ -2,11 +2,8 @@
 
 
 
- <div align="center">
-
-  **Run this project using:** [STATIC PREVIEW](https://nbviewer.jupyter.org/github/ealvarezj/Data-Science-Portfolio/blob/main/Guided_Project_Schools/Schools.ipynb) or [![schools](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ealvarezj/binder_env/main?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fealvarezj%252FData-Science-Portfolio%26urlpath%3Dtree%252FData-Science-Portfolio%252FGuided_Project_Schools%252FSchools.ipynb%26branch%3Dmain)
-
-</div>
+**Run this project using:** [STATIC PREVIEW](https://nbviewer.jupyter.org/github/ealvarezj/Data-Science-Portfolio/blob/main/Guided_Project_Schools/Schools.ipynb) or [![schools](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ealvarezj/binder_env/main?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fealvarezj%252FData-Science-Portfolio%26urlpath%3Dtree%252FData-Science-Portfolio%252FGuided_Project_Schools%252FSchools.ipynb%26branch%3Dmain)
+{: .page-center-class}
 
 
 ![](https://opendata.cityofnewyork.us/wp-content/themes/opendata-wp/assets/img/nyc-open-data-logo.svg)
