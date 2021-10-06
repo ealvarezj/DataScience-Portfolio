@@ -110,7 +110,7 @@ As we can see, benchmarking different models with their standard configurations 
 
 ### Hyperparameter Optimization and Dimensionality reduction
 
-Since Random Forest is supported natively by **scikit-learn** we can make use of the **GridSearchCV** and **RandomSearhCV** classes to perform Hyperparameter Optimization. The following table show the optimization proocess for the Random Forest Regressor estimator. 
+Since Random Forest is supported natively by **scikit-learn** we can make use of the **GridSearchCV** and **RandomSearhCV** classes to perform Hyperparameter Optimization. The following table show the optimization proocess for the Random Forest Regressor estimator. $$ 4=3 $$
 
 
 | Hyperparameter                                   | Value range                                                                             | GSearch        | RSearch        |
