@@ -115,10 +115,10 @@ Since Random Forest is supported natively by **scikit-learn** we can make use of
 
 | Hyperparameter                                   | Value range                                                                             | GSearch        | RSearch        |
 |--------------------------------------------------|-----------------------------------------------------------------------------------------|----------------|----------------|
-| Max. depth                                       | $$ None, [2,10] \in \mathbb{Z} $$                                                       | 8           | None           |
-| Max. features                                    | $$ {auto, sqrt, log2} $$                                                          | sqrt           | log2           |
-| Max. leaf nodes                                  | $$ {None, [2,10] \in \mathbb{Z} $$                                                       | None           | None           |
-| Criterion                                        | $$ mse, friedeman mse, mae, poisson $$                                                | friedman mse   | mae            |
+| Max. depth                                       | $$ \{None, [2,10] \in \mathbb{Z}\} $$                                                       | 8           | None           |
+| Max. features                                    | $$ \{auto, sqrt, log2\} $$                                                          | sqrt           | log2           |
+| Max. leaf nodes                                  | $$ \{None, [2,10] \in \mathbb{Z}\} $$                                                       | None           | None           |
+| Criterion                                        | $$ \{mse, friedeman mse, mae, poisson\} $$                                                | friedman mse   | mae            |
 | ccp alpha                                        | $$ [0, 0.9] \in \mathbb{R} $$                                                               | 0.1          | 0           |
 |**Metric**                 | **Resources**                                                                              |                |                |
 |$$ R^{2} $$ with $$ CV = 10 $$       | Performed on a machine  with 12 CPU cores at 4.3 Ghz and  16 Gb of RAM | 0.8562         | 0.8574         |
