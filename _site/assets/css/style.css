@@ -327,3 +327,5 @@ a:hover { text-decoration: underline; }
 #div { display: flex; justify-content: center; }
 
 #table { align-self: center; }
+
+.page-center-class { text-align: center; }
