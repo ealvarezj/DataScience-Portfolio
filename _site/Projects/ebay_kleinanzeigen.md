@@ -8,6 +8,7 @@
 
 </div>
 
+
 <!-- ![sql](https://mybinder.org/badge_logo.svg) -->
 
 In this project I explored the `Ebay Car Sales Dataset` from the [Ebay Kleinanzeigen](https://www.ebay-kleinanzeigen.de/) German website, a division for classified advertisements' website with sections devoted to jobs, housing, services, community service, gigs, and cars. Similar to "Craiglist" in the United States. The dataset was crawled from the website directly. 
