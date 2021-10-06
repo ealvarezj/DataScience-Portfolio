@@ -82,7 +82,9 @@ Data analysis is a crucial step in any Machine Learning problem, is a way to int
 ## Model evaluation
 There are numerous regression algorithms already implemented in libraries like `scikit-learn` that one can choose from. I chose a simple linear regression models as my baseline model, since it is fast to train due to its vectorized closed form implementation, and easy to interpret. After getting first results and model accurary a set of different models where tested on the same dataset to create a benchmark. 
 
+
 | Model                           | MAE     | MSE      | RMSE    | R2      | RMSLE  | MAPE   | TT (Sec) |
+
 |---------------------------------|---------|----------|---------|---------|--------|--------|----------|
 | CatBoost Regressor              | 4.2354  | 50.8014  | 6.9793  | 0.8645  | 0.2672 | 0.2042 | 1.618    |
 | Extra Trees Regressor           | 4.3761  | 56.3788  | 7.2692  | 0.8534  | 0.2778 | 0.2097 | 0.029    |
@@ -110,6 +112,7 @@ As we can see, benchmarking different models with their standard configurations 
 ### Hyperparameter Optimization and Dimensionality reduction
 
 Since Random Forest is supported natively by **scikit-learn** we can make use of the **GridSearchCV** and **RandomSearhCV** classes to perform Hyperparameter Optimization. The following table show the optimization proocess for the Random Forest Regressor estimator. 
+
 
 | \setrow{\small\bfseries} Hyperparameter          | Value range                                                                             | GSearch        | RSearch        |
 |--------------------------------------------------|-----------------------------------------------------------------------------------------|----------------|----------------|
