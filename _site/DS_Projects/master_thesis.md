@@ -113,19 +113,19 @@ As we can see, benchmarking different models with their standard configurations 
 Since Random Forest is supported natively by **scikit-learn** we can make use of the **GridSearchCV** and **RandomSearhCV** classes to perform Hyperparameter Optimization. The following table show the optimization proocess for the Random Forest Regressor estimator. 
 
 
-| \setrow{\small\bfseries} Hyperparameter          | Value range                                                                             | GSearch        | RSearch        |
+| Hyperparameter                                   | Value range                                                                             | GSearch        | RSearch        |
 |--------------------------------------------------|-----------------------------------------------------------------------------------------|----------------|----------------|
-| Max. depth                                       | $\{None, [2,10] \in \mathbb{Z}\}$                                                       | $8$            | None           |
-| Max. features                                    | $\{\text{auto, sqrt, log2} \}$                                                          | sqrt           | log2           |
-| Max. leaf nodes                                  | $\{None, [2,10] \in \mathbb{Z}\}$                                                       | None           | None           |
-| Criterion                                        | $\{$mse, friedeman mse, mae, poisson$\}$                                                | friedman mse   | mae            |
-| ccp alpha                                        | $[0, 0.9] \in \mathbb{R}$                                                               | $0.1$          | $0$            |
+| Max. depth                                       | $$\{None, [2,10] \in \mathbb{Z}\}$$                                                       | $$8$$            | None           |
+| Max. features                                    | $$\{\text{auto, sqrt, log2} \}$$                                                          | sqrt           | log2           |
+| Max. leaf nodes                                  | $$\{None, [2,10] \in \mathbb{Z}\}$$                                                       | None           | None           |
+| Criterion                                        | $$\{$$mse, friedeman mse, mae, poisson$$\}$$                                                | friedman mse   | mae            |
+| ccp alpha                                        | $$[0, 0.9] \in \mathbb{R}$$                                                               | $$0.1$$          | $$0$$            |
 | \setrow{\small\bfseries} Metric                  | Resources                                                                               |                |                |
-| \multicolumn{1}{l}{$R^{2}$ with $CV = 10$}       | \multirow{4}{=}{Performed on a machine  with 12 CPU cores at 4.3 Ghz and  16 Gb of RAM} | 0.8562         | 0.8574         |
-| \multicolumn{1}{l}{$RMSE$ with $CV = 10$}        |                                                                                         | 8.089          | 8.104          |
-| \multicolumn{1}{l}{Number of fits with $CV = 5$} |                                                                                         | 48600          | 2500           |
+| \multicolumn{1}{l}{$$R^{2}$$ with $$CV = 10$$}       | \multirow{4}{=}{Performed on a machine  with 12 CPU cores at 4.3 Ghz and  16 Gb of RAM} | 0.8562         | 0.8574         |
+| \multicolumn{1}{l}{$$RMSE$$ with $$CV = 10$$}        |                                                                                         | 8.089          | 8.104          |
+| \multicolumn{1}{l}{Number of fits with $$CV = 5$$} |                                                                                         | 48600          | 2500           |
 | \multicolumn{1}{l}{Compute time (\si{\second})}  |                                                                                         | 768            | 40.3           |
-| \setrow{\small\bfseries} Baseline model          | $\mathbf{RMSE}$                                                                         | $\mathbf{R^2}$ | $\mathbf{MAE}$ |
-| Random Forest regressor                          | $8.4708$                                                                                | $0.8428$       | $71.7549$      |
+| \setrow{\small\bfseries} Baseline model          | $$\mathbf{RMSE}$$                                                                         | $$\mathbf{R^2}$$ | $$\mathbf{MAE}$$ |
+| Random Forest regressor                          | $$8.4708$$                                                                                | $$0.8428$$       | $$71.7549$$      |
 
 
