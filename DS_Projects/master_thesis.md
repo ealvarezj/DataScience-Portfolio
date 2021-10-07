@@ -140,11 +140,11 @@ Taking a look at the results after cross validation is possible to see that, the
 
 For the dataset multiple dimensionality reduction `(PCA, LASSO)` and feature selection techniques `(Model based feature selection, Recursive feature elimination)`, were used on the dataset in order to achieve lower dimensionality as well as better performance. At this point the complete dataset was used, by converting categorical variables to numeric, using **OneHot encoding**. The dimension of the dataset changed from 19 to 70 variables. 
 
-#### Model based feature selection
+### Model based feature selection
 Starting with **Model based feature selection** a supervised algorithm, in this case a random forest regressor was used to learn the feature importance of the model. This method uses a supervised algorithm e.g. a decision tree or random forest as well as linear models, to learn the feature importance of the data in the model before fitting the final estimator. Performing model-based feature selection on the encoded dataset results in a reduction from 70 features to 35. The criteria implemented in scikit-learn library for choosing which variables to keep is based on the Mean decrease in impurity (MDI) metric, which can use any defined impurity measure $$ t(i) $$ , e.g. mean squared error for regression or Gini coefficient for classification.
 
 
-#### Recursive Feature Elimination (RFE)
+### Recursive Feature Elimination (RFE)
 
 Another approach for selecting features is by recursively fitting a model with a smaller subset of features on each iteration. This method uses an estimator e.g. Random Forest regressor and ranks features on each iteration based on some importance metric, for example, the mean decrease impurity used for model-based selection. On each iteration, the least important features are removed until a predefined threshold is achieved.
 
@@ -153,7 +153,7 @@ Another approach for selecting features is by recursively fitting a model with a
 
 The figure above shows the implementation of Recursive Feature Elimination with Cross Validation (RFECV). The learning curve indicates how the number of predictors in- creases or decreases the performance of the used estimator by inducing variance (adding more predictors), which leads to a decrease in bias. The dotted vertical line marks the point on the graph at which the highest cross-validated train score was achieved, given a certain number of features. In this case, keeping 47 out of 70 variables lead to the most accurate model. One major drawback from using recursive feature elimination and also model-based feature selection is the fact that only a subset of some categorical variables was chosen to be relevant. This is due to the way variables are encoded. Dummy variables are treated as single features and therefore the algorithm does not have information whereas a feature is to be considered as part of a category or just an independent variable. Using only some dummy features in a future model would change the whole dataset definition.
 
-#### GROUP LASSO
+### GROUP LASSO
 
 To overcome the problem of feature selection with dummy variables, there is a method that addresses this issue, by taking into account grouped features. Group lasso (Group least absolute shrinkage and selection operator)
 
@@ -187,27 +187,106 @@ $$
 $$
 
 
-The penalization $\left\lVert \beta\right\rVert_{2}$ used for Ridge is formalized as the $\ell_{2}$ norm  --- usually known as the \textbf{Euclidean norm} --- and $\left\lVert \beta\right\rVert_{1}$ as the $\ell_{1}$ norm --- known as the \textbf{Manhattan norm} --- for lasso. If $\lambda = 0$, then both models solve \glsxtrshort{ols} (c.f. equation \ref{eqn:linear_regression_basic}). $\ell_{1}$ and $\ell_{2}$ constrain the size of the coefficients, e.g. the increase of a coefficient is only possible if it leads to a decrease in the RSS and $\lambda > 0$. In turn, ncreasing $\lambda$ would force some coefficient towards zero. If one would like to reduce the feature space, using the $\ell_{2}$ norm is not a viable solution, since the coefficients would never be able to be exactly zero. By definition, Ridge regression is non-sparse and will contain all zero coefficient for the solution.  The lasso model using the $\ell_{1}$ norm allows for sparsity and as $\lambda$ increases, sparsity increases as well. This regularization approach allows coefficients to be exactly zero and therefore remove those variables from the model, where $\left(x_{i}\beta_{i}\right), ~ \beta_{i} = 0$. Applying lasso to the dataset would result in a sparse model, but the issue of grouped variables remains. Group lasso, which aims exactly at solving that issue solves the following optimization problem \parencites{Yuan2006}{Friedman2010}{Simon2012}{Lim2013}{Meier2008}{AmaralSantos2016}{Tibshirani2017}{Rachmawati2017}: 
+The penalization $\left\lVert \beta\right\rVert_{2}$ used for Ridge is formalized as the $\ell_{2}$ norm  --- usually known as the **Euclidean norm** --- and $\left\lVert \beta\right\rVert_{1}$ as the $\ell_{1}$ norm --- known as the **Manhattan norm** --- for lasso. If $\lambda = 0$, then both models solve OLS (Ordinary least squares). $\ell_{1}$ and $\ell_{2}$ constrain the size of the coefficients, e.g. the increase of a coefficient is only possible if it leads to a decrease in the RSS and $\lambda > 0$. In turn, ncreasing $\lambda$ would force some coefficient towards zero. If one would like to reduce the feature space, using the $\ell_{2}$ norm is not a viable solution, since the coefficients would never be able to be exactly zero. By definition, Ridge regression is non-sparse and will contain all zero coefficient for the solution.  The lasso model using the $\ell_{1}$ norm allows for sparsity and as $\lambda$ increases, sparsity increases as well. This regularization approach allows coefficients to be exactly zero and therefore remove those variables from the model, where $\left(x_{i}\beta_{i}\right), ~ \beta_{i} = 0$. Applying lasso to the dataset would result in a sparse model, but the issue of grouped variables remains. Group lasso, which aims exactly at solving that issue solves the following optimization problem.
+
+$$
+\begin{equation}
+    \underset{\beta \in \mathbb{R}^{p}}{\text{argmin}} \left\lVert y - \sum_{l = 1}^{L} X_{l}\beta_{l}\right\rVert_{2}^{2} + \lambda \sum_{l = 1}^{L} \sqrt{p_{l}} \left\lVert \beta_{l}\right\rVert_{2}\label{eqn:group_lasso}       
+\end{equation}
+$$
+
+all predictor variables are divided into $l = l_1, l_2 \dots L$ different groups. $X_{l}$ is the submatrix of $X$ corresponding to the variables $l$. $\beta_{l}$ is the coefficient vector for the group $l$ and $\sqrt{p_{l}}$ is the square root of the size of elements in group $l$. Notice that the $\left\lVert \beta_l \right\rVert_{2}$ norm is not squared as for ridge. If the size of $L = 1$ then Group lasso reduces to lasso. Group lasso will perform feature selection at the group level, so that it is able to eliminate complete groups of features. The parameter $\lambda$ controls the amount of regularization. The group size penalty parameter $\sqrt{p_{l}}$ allows for each group to be penalized differently. The group lasso can be further extended to perform selection at both the group and within group level. This variant is called the **sparse group lasso**.
+
+$$
+\begin{equation}
+    \underset{\beta \in \mathbb{R}^{p}}{\text{argmin}} \left\lVert y - \sum_{l = 1}^{L} X_{l}\beta_{l}\right\rVert_{2}^{2} + \lambda_{1} \sum_{l = 1}^{L} \left\lVert \beta_{l}\right\rVert_{2} + \lambda_{2} \left\lVert \beta\right\rVert_{1}\label{eqn:sparse_group_lasso}
+\end{equation}
+$$
 
 
+The sparse group lasso is not really usable to solve for the problem with the dummy variables stated above, since additional selection within groups is performed. The reason for reference is that some implementations in Python, reuse the sparse model definition to perform either group lasso or lasso. Richie-Halford introducees [**Groupyr**](https://richiehalford.org/groupyr/), a Python package for sparse group lasso which also supports cross validation for hyperparameter optimization using either grid search or bayesian optimization. The implementation of sparse group lasso can be extended with the parameter $\alpha \in \left[0,1\right]$ --- $\alpha = 0$ gives the group lasso fit, $\alpha = 1$ gives the lasso fit --- according to:
+
+$$
+\begin{equation}
+    \underset{\beta \in \mathbb{R}^{p}}{\text{argin}} \left\lVert y - \sum_{l = 1}^{L} X_{l}\beta_{l}\right\rVert_{2}^{2} + \left(1-\alpha\right)  \lambda_{1} \sum_{l = 1}^{L} \left\lVert \beta_{l}\right\rVert_{2} + \alpha\lambda_{2} \left\lVert \beta\right\rVert_{1}
+\end{equation}
+$$
+
+The second implementation of group lasso was used for the analysis. This package implemetns the group lasso algorithm in the [**Celer**](https://mathurinm.github.io/celer/#) Python package. This also supports cross-validated hyperparameter optimization for finding the optimal values of $\alpha$ and $\lambda$.
 
 
+### Principal Component Analysis (PCA)
+
+Instead of removing features from the feature space to reduce dimensionality on a dataset, one can search —geometrically speaking— for directions in a dataset on which the most variance lives in. By taking variables that are highly correlated with each other, linear combinations can be constructed, so that data can be represented in a lower- dimensional space. Principal Component Analysis (PCA) builds upon the fundamentals of matrix factorization, especially the Singular Value Decomposition (SVD). The SVD is a cornerstone of a lot of methods in engineering and mathematics since it provides a simple generic way of decomposing any matrix X into the matrices:
+
+$$
+\begin{equation}\label{eqn:svd}
+    X  = U ~ \varSigma  ~ V^{T}
+\end{equation}
+$$
+
+Both $U$ and $V^{T}$ are unitary matrices --- that means, their product with the transpose results in the identity matrix $I$ --- and $\varSigma$ is a diagonal non-zero matrix and full rank. The diagonal entries in $\varSigma$ are called **singular values** and are ranked in importance so that $\sigma_{1} > \sigma_{2} > \dots \sigma_{r}$. The SVD factorization provides a way of accurately approximating a matrix using multiple low-rank matrices. One could expand the right side of the equation \ref{eqn:svd} to see the linear combinations of rank-1 matrices:
+
+$$
+\begin{equation}
+    \tilde{X} = \sum_{k = 1}^{r} \sigma_{k}u_{k}v_{k}^{T}  = \sigma_{1}u_{1}v_{1}^{T} + ... +  \sigma_{r}u_{r}v_{r}^{T}
+\end{equation}
+$$
+
+Each outer product of $u_{k}v_{k}^{T}$ is scaled by the singular value $\sigma_{k}$. Since $\sigma_{k}$ is ordered in descending order the first matrix is scaled by the largest singular value. It is important to note that since the matrix $\varSigma$ has to be rectangular, but the diagonal is square, the zero entries at the bottom would result in zero matrices. To find the best low-rank approximation to the matrix $X$ there is the \textit{Eckart-Young} theorem. The method following this theorem is called **truncated SVD**. But how does one reduce the dimensionality of the dataset when the approximation by the SVD always outputs a matrix that is the same size but with approximated values? Here is where PCA comes into play. PCA exploits the properties of the SVD for calculating the **principal components**. The PCA method assumes that data is centered around the origin. To do so the mean of the matrix $X$ is subtracted, $B$ is the new centered matrix:
+
+$$
+\begin{equation}
+    B = X - \bar{X}
+\end{equation}
+$$
+
+The original PCA formulation uses a factorization method called **eigenvalue decomposition** to find those principal components from the covariance matrix $C$: 
+
+$$
+\begin{equation}\label{eqn:covariance_matrix}
+   C = Cov(B) = \frac{1}{n-1} B^{T}B 
+\end{equation}
+$$
 
 
+The eigenvalue decomposition factorizes a matrix in terms of its **eigenvectors** and **eigenvalues**. This factorization can only be applied to diagonalizable matrices e.g. Hermitian matrices. The covariance matrix in equation \ref{eqn:covariance_matrix} is Hermitian for which eigen-decomposition is valid. As previously stated in this chapter, one can use SVD to also compute the eigenvectors and eigenvalues of the covariance matrix by decomposing the covariance matrix $C$:
+
+$$
+\begin{align}
+    C &= X^{T}X\\
+    X &= U ~ \varSigma  ~ V^{T}\\
+    X^{T}X &= (U ~ \varSigma  ~ V^{T})^{T}U ~ \varSigma  ~ V^{T}\\
+        &= V ~ \varSigma^{T} ~ U^{T} ~ U ~ \varSigma  ~ V^{T}\\
+    X^{T}X  &= V ~ \varSigma^{2} V^{T}
+\end{align}
+$$
 
 
+The columns of $V$ are eigenvectors of the covariance matrix $C = X^{T}X$ and $\varSigma^{2}$ is the diagonal matrix with the singular values which correspond to the square of the non-zero eigenvalues of $C$. Having found the eigenvectors and eigenvalues, then one could find the principal components by the transformation matrix $T$, taking the product of the centered data $B$ with the eigenvectors $V$ so that
+
+$$
+\begin{align}
+    B &= U ~ \varSigma  ~ V^{T}\\
+    B~V &= U ~ \varSigma  ~ V^{T} ~ V = U ~ \varSigma\\
+    T &= B ~ V
+\end{align}
+$$
+ 
+A detailed calculation of eigenvalues and eigenvectors is outside the scope of this work, more importantly is the usability these have on dimensionality reduction. The diagonal matrix $\varSigma$ of singular values (eigenvalues) $\sigma^{2}$ represents, in a statistical context, the variance. Eigenvalues and eigenvectors come in pairs and are ordered in descending order. One could see how much of the variance is explained by every eigenvector considering its eigenvalue. This is useful for dimensionality reduction, since based on the ratio of explained variance:
+
+$$
+\begin{equation}\label{eqn:ratio_expl_var}
+    \frac{\sum_{k = 1}^{r} \lambda_{k} }{\sum_{k = 1}^{n} \lambda_{k}}
+\end{equation}
+$$
 
 
+An arbitrary threshold of e.g. $95\%$ can be chosen, so that only those $r$-number of eigenvectors in $V$ are kept, which explains most of the variance in the dataset, in this case, 95\%. By applying the transformation $T$ with a reduced vector $V \in \mathbb{R}^{m \times r}$ to a high dimensional matrix, data is projected into the principal components, creating a lower-dimensional representation of the dataset. Figure below (left) exemplifies the concept of finding the principal components for a dataset. Here, the dataset is two-dimensional containing only two features. Using SVD, the dataset is decomposed so that one could plot the eigenvectors scaled by the eigenvalues. The scaled eigenvectors represent the principal components (PC) for that particular matrix, with PC1 explaining $56.77\%$ of the variance and PC2 explaining $43.23\%$.
 
 
+{% include image.html url="pca.png" description="Example of applying PCA to reduce dimensionality. Left: Scatter plot between two variables. The eigenvectors scaled by their corresponding eigenvalues are visualized for that matrix, showing the directions of the highest variance expresses as a Principal components. Right: Reduction of the dimensional space from two to one dimensions by projecting data into the first principal component (due to the large amount of values only some projection lines where randomly visualized)." width="800" %}
 
+The figure above (right), shows the result of reducing the dimensionality from two to one dimension, i.e. the dataset is projected into the first principal component PC1. The red lines between the points and the principal component describe the projection of that point into the new coordinate system, defined by the principal components. This simple example can be extrapolated to the high dimensional dataset e.g. one could reduce the $70$ features down to just the first two principal components. Having a mixed dataset containing categorical and numeric variables, is also a challenge for the use of PCA, since it assumes data to be continuous. The use of PCA would be valid by just encoding the categorical variables as did before with model selection techniques like RFE or LASSO. Nevertheless, the factorization of matrices containing categorical variables can also be approached by methods other than PCA. Factor Analysis of Mixed Data (FAMD) is a dimensionality reduction method, which is specially used to analyze mixed datasets. In essence, it combines PCA for continuous variables and Multiple Correspondence Analysis (MCA) for categorical variables. MCA is an extension of Correspondence analysis (CA), which is a method of summarizing data in a two-dimensional form of a multivariate dataset, similar to PCA. CA and MCA are out of the scope of this work, therefore the concepts will not be discussed further. FAMD, MCA and CA are implemented in Python by the [**Prince**](https://github.com/kormilitzin/Prince) package. 
 
-
-
-
-.....
-
-UPLOADING OF THIS CONTENT IS STILL UNDER CONTRUCTION AND WILL BE ONLINE SOON
-
-![under contruction](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Wikidata_logo_under_construction_sign_wide.svg/800px-Wikidata_logo_under_construction_sign_wide.svg.png)
 
