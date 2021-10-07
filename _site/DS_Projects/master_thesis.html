@@ -494,7 +494,7 @@ rates.</i>
 <figure class="image">
     <p align="center">
         <img src="RFE.png" alt="Feature selection using the recursive feature elimination cross validated algorithm
-(RFECV) on a Random Forest Regressor" width="500" />     
+(RFECV) on a Random Forest Regressor" width="800" />     
     </p>
     <div style="text-align:center">
         <figcaption class="figure-caption text-center"><i>Feature selection using the recursive feature elimination cross validated algorithm
@@ -550,6 +550,20 @@ rates.</i>
 \end{equation}\]
 
 <p>The second implementation of group lasso was used for the analysis. This package implemetns the group lasso algorithm in the <a href="https://mathurinm.github.io/celer/#"><strong>Celer</strong></a> Python package. This also supports cross-validated hyperparameter optimization for finding the optimal values of $\alpha$ and $\lambda$.</p>
+
+<p>Here is a summary of the resulting dataset using all previously mentioned dimensionality reduction techniques.</p>
+
+<figure class="image">
+    <p align="center">
+        <img src="different_reduction.png" alt="Feature selection using a random forest regressor and two cross-validated group lasso regression using the Groupyr and celer python packages for comparison" width="800" />     
+    </p>
+    <div style="text-align:center">
+        <figcaption class="figure-caption text-center"><i>Feature selection using a random forest regressor and two cross-validated group lasso regression using the Groupyr and celer python packages for comparison</i>
+        </figcaption>
+    </div>
+</figure>
+
+<p>The figure above might look odd and difficult to undestand at first sight. Since I am not allowed to share the name of the features used, these were removed from the image. Each colum of the three matrices represents the selected variables for each method. A <strong>1</strong> means that that variable was taken into the model and <strong>0</strong> discarted. We can observe that since that REFCV and Model based feature selection are not aware of groups, a lot of variables are discarded. Group Lasso from the other side cannot get rid of single variable and therefore keeps those belonging to the important group. For this reason the dimensionality reduction is not as large.</p>
 
 <h3 id="principal-component-analysis-pca">Principal Component Analysis (PCA)</h3>
 
@@ -614,6 +628,282 @@ rates.</i>
 </figure>
 
 <p>The figure above (right), shows the result of reducing the dimensionality from two to one dimension, i.e. the dataset is projected into the first principal component PC1. The red lines between the points and the principal component describe the projection of that point into the new coordinate system, defined by the principal components. This simple example can be extrapolated to the high dimensional dataset e.g. one could reduce the $70$ features down to just the first two principal components. Having a mixed dataset containing categorical and numeric variables, is also a challenge for the use of PCA, since it assumes data to be continuous. The use of PCA would be valid by just encoding the categorical variables as did before with model selection techniques like RFE or LASSO. Nevertheless, the factorization of matrices containing categorical variables can also be approached by methods other than PCA. Factor Analysis of Mixed Data (FAMD) is a dimensionality reduction method, which is specially used to analyze mixed datasets. In essence, it combines PCA for continuous variables and Multiple Correspondence Analysis (MCA) for categorical variables. MCA is an extension of Correspondence analysis (CA), which is a method of summarizing data in a two-dimensional form of a multivariate dataset, similar to PCA. CA and MCA are out of the scope of this work, therefore the concepts will not be discussed further. FAMD, MCA and CA are implemented in Python by the <a href="https://github.com/kormilitzin/Prince"><strong>Prince</strong></a> package.</p>
+
+<figure class="image">
+    <p align="center">
+        <img src="explained_var.png" alt="Explained variance and Eigenvalues. Left: Curve of the cumulative ratio of explained variance \ref{eqn:ratio_expl_var} using PCA and FAMD. Right: Eigenvalues resulting of using FAMD and PCA on the dataset." width="800" />     
+    </p>
+    <div style="text-align:center">
+        <figcaption class="figure-caption text-center"><i>Explained variance and Eigenvalues. Left: Curve of the cumulative ratio of explained variance \ref{eqn:ratio_expl_var} using PCA and FAMD. Right: Eigenvalues resulting of using FAMD and PCA on the dataset.</i>
+        </figcaption>
+    </div>
+</figure>
+
+<p>In figure BOVE both PCA and FAMD analysis were used on the dataset. On the left, the cumulative explained variance is plotted, with a threshold of $95\% $. The dimensionality of the dataset can be reduced from 70 down to 38. The explained variance described by using both models is very similar and the threshold results in the same number of components.  On the right, the eigenvalues from PCA and FAMD are plotted. The visualization of the eigenvalues can help identify noisy components or dimensions which do not add any information to the dataset. Here these eigenvalues have a value equal or very close to zero. For the dataset eigenvalues above 58 dimensions are zero. The dataset could therefore just be reduced to 58 dimensions and would still preserve almost all of its variance.</p>
+
+<h3 id="benchmarks-of-different-feature-selection-and-dimensionality-reduction-techniques">Benchmarks of different feature selection and dimensionality reduction techniques</h3>
+
+<p>Until now, different feature selection and dimensionality reduction techniques were explored. To put the different results in a meaningful comparison, each transformed dataset — that is, the resulting dataset after applying either feature selection or dimensionality reduction — can be benchmarked using the same estimator. In table below are the results of fitting the previous Random Forest estimator using $10$-fold cross-validation.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>stats</th>
+      <th>Train R2</th>
+      <th>Test R2</th>
+      <th>Train RMSE</th>
+      <th>Test RMSE</th>
+      <th>Hold out Test R2</th>
+      <th>Dimensions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GLasso A</td>
+      <td>Mean</td>
+      <td>0.967</td>
+      <td>0.904</td>
+      <td>3.389</td>
+      <td>5.564</td>
+      <td>0.877</td>
+      <td>67</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Std</td>
+      <td>0.002</td>
+      <td>0.026</td>
+      <td>0.084</td>
+      <td>1.138</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>GLasso B</td>
+      <td>Mean</td>
+      <td>0.962</td>
+      <td>0.897</td>
+      <td>3.605</td>
+      <td>5.786</td>
+      <td>0.875</td>
+      <td>58</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Std</td>
+      <td>0.002</td>
+      <td>0.024</td>
+      <td>0.071</td>
+      <td>1.017</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>FAMD (95\%)</td>
+      <td>Mean</td>
+      <td>0.955</td>
+      <td>0.834</td>
+      <td>3.909</td>
+      <td>7.254</td>
+      <td>0.812</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Std</td>
+      <td>0.002</td>
+      <td>0.053</td>
+      <td>0.103</td>
+      <td>1.201</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>PCA (95\%)</td>
+      <td>Mean</td>
+      <td>0.958</td>
+      <td>0.841</td>
+      <td>3.794</td>
+      <td>7.180</td>
+      <td>0.820</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Std</td>
+      <td>0.002</td>
+      <td>0.024</td>
+      <td>0.085</td>
+      <td>0.830</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>All features</td>
+      <td>Mean</td>
+      <td>0.966</td>
+      <td>0.904</td>
+      <td>3.405</td>
+      <td>5.555</td>
+      <td>0.878</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Std</td>
+      <td>0.001</td>
+      <td>0.028</td>
+      <td>0.058</td>
+      <td>1.040</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For reference purposes, the same estimator was fitted to the dataset containing all the features. From the results, it is possible to observe that the feature selection method using Group LASSO has a similar performance to the reference model. Especially the output of Group LASSO A is nearly identical with the reference model. Recall that by applying Group LASSO A to the data, practically all features were kept (see figure in chapters before), except for some misclassified features, resulting from an adverse splitting of the train and test set. On the other hand, dimensionality reduction methods like PCA and FAMD (with an explained variance threshold of 95\%) achieved a lower performance, especially on the test dataset as well as on the hold-out test set. This is an indication that the estimator used on that specific dataset may be overfitting on the train set and not be able to generalize well on the test set. To investigate further why the model may be overfitting, the bias-variance problem can be analyzed. One way to approach this is by analyzing how a model behaves by gradually increasing the number of training instances. This is called a <strong>learning curve</strong>.</p>
+
+<figure class="image">
+    <p align="center">
+        <img src="learning_curve_coparison.png" alt="Learning curves using a Random Forest Regressor for different feature selection and dimensionality reduction methods" width="800" />     
+    </p>
+    <div style="text-align:center">
+        <figcaption class="figure-caption text-center"><i>Learning curves using a Random Forest Regressor for different feature selection and dimensionality reduction methods</i>
+        </figcaption>
+    </div>
+</figure>
+
+<p>Figure above plots the learning curves for each of the datasets on benchmarks table above. Each dataset is described with a different line type. The blue lines represent the cross-validated scores of the training set; The yellow and the red lines represent the cross-validated test scores. Additionally, for each of the test scores, the confidence interval is represented by the black lines and the shaded areas accordingly. On the left, both datasets using feature selection with Group LASSO and the reference model using all the features are plotted. With the increase of training instances the overall training error increases, this is because with a low number of instances the algorithm can learn this almost perfectly, and gradually it becomes more difficult to generalize once more observations come into play. The opposite happens with the test error. With a low number of instances, the trained algorithm does not have enough information to generalize outside the train set, therefore the performance on the test set is low. Once the size of the dataset grows, ideally, both curves should converge and decrease even further. In this case, it is clear to see that the model is overfitting since, in the end, the difference between train and test scores is relatively large (approximately 2 minutes). The results of using Group LASSO resemble the base model containing all features. This behavior shows that the model is suffering from high variance. At this point, there is not much that can be done to decrease the error gap between the test and train set, other than adding more data to the model. A further increase of the dataset size could reduce the gap so that both curves eventually converge.</p>
+
+<p>On the right side, the results are slightly similar. PCA and FAMD use a much lower-dimensional dataset. Here both models suffer from high bias when the number of instances is low. This can be observed by looking at the training error, which is much higher than the baseline model using all features. However, the error decreases as the number of instances increases. The gap between the test and train sets is even larger than the other two models previously investigated. From this, we can conclude that the Random Forest regressor proposed at the beginning achieves the best results when used on all the features available. Dimensionality reduction constrained to grouped features, as well as dimensionality reduction using PCA and FAMD do not increase the performance of that specific model. This statement is only valid for the used Random Forest estimator, but what if other models could also benefit from reduced datasets and as a result, achieve better results? The process of finding out the best of a large space of possible models, feature preprocessing, feature selection, and dimensionality reduction methods is a complex task. This requires not only large amounts of computational effort but also an efficient way of using optimization techniques that take into account all those parameters. A relatively new approach to this task is the use of <strong>Automated machine learning</strong> methods. This will be discussed next</p>
+
+<h2 id="automl">AutoML</h2>
+
+<p>AutoML is the automation process of machine learning tasks. The main task of AutoML, is to automatically deal with the hyperparameter optimization process. As already discussed before this process can be manually approached by explicitly defining a hyperparameter space and either using brute force algorithms like Grid search or a stochastic method like Randomized search. This “manual search” is a time-consuming process, which is difficult to implement in production environments, where such research budgets and time are usually not available. AutoML should not be seen as a replacement technology for the data scientist, but rather as a supporting tool, to accelerate the preliminary discovery process and in some cases even find solutions that with some extra manual intervention, could be directly implemented. In this chapter, the basic concepts of AutoML will be explained, afterwards some AutoML libraries available in Python were used to automatically find the best possible machine learning pipeline within a predefined computational budget. In the end, the results will be compared in a Benchmark to see if AutoML approaches can be used to solve the machine learning problem from previous chapters.</p>
+
+<p>The approach of AutoML can be generalized as a cash problem . Consider the feature matrix $X \in \mathbb{R}^{d}$ and a corresponding target vector $Y$ so that the resulting dataset $D$ can be divided into the disjunct sets $D_{train}$ and $D_{valid}$, corresponding to the training and the validation datasets. The AutoML approach is — in an automated manner — to select from a set of different algorithms \(\mathcal{M}_{\lambda}\). An algorithm $\mathcal{A} \in \mathcal{M}_{\lambda}$ hyper-parametrized by $\lambda \in \Lambda$, which evaluated by a loss function $\mathcal{L}$ and given a computational budget $B$ produces predictions with the lowest error. By following a cross validation setting, in which results are averaged, so that it can be formulated as an extension of the original CASH problem, as follows:</p>
+
+\[\begin{equation}\label{eqn:automl}
+    \mathcal{A}_{\lambda^{*}} = \underset{\lambda \in \Lambda}{\text{armin}} \frac{1}{k} \sum_{i = 1}^{k} \mathcal{L}(\mathcal{A}_{\lambda},D_{train}^{(i)}, D_{valid}^{(i)}) ~ s.t (\sum b_{\lambda}^{i}) &lt; B
+\end{equation}\]
+
+<p>$b_{\lambda}$ represents the time it takes to compute \(\mathcal{L}(\mathcal{A}_{\lambda},D_{train}^{(i)}, D_{test}^{(i)})\). Its sum has to be lower than the global budget $B$. The process in equation \ref{eqn:automl} searches over the set of algorithms $\mathcal{M}_{\lambda}$, taking into account $B$. In practice, AutoML methods not only search for one specific algorithm, but rather optimize a machine learning pipeline. A machine learning pipeline contains a set of actions used to organize and structure the workflow in a machine learning experiment. Machine learning pipelines also contain, besides an estimator (e.g. Regression model), other processes, like a feature selection, encoding of features, data preprocessing and cross validation; ensuring that there is no data leakage in between the steps. Depending on the AutoML approach, pipelines are explored differently using different optimization methods.</p>
+
+<h2 id="overview-of-different-automl-libraries">Overview of different AutoML libraries}</h2>
+<p>There are to date multiple AutoML libraries available, which provide a low code interface for performing Automated machine learning. The concept has become so popular, so that big companies like Google and Microsoft have developed commercial solutions, allowing users to interactively construct and automatically optimize machine learning pipelines. All this is with the objective of democratizing machine learning.</p>
+
+<p>In this work the AutoML libraries <a href="https://www.automl.org/automl/auto-sklearn/"><strong>Autosklearn</strong></a> and <a href="http://epistasislab.github.io/tpot/"><strong>TPOT</strong></a> were used on the datasets. Both libraries make use of the algorithms available in the machine learning package scikit-learn and have a similar framework. Additionally, for benchmarking purposes, two more AutoML libraries, <strong>MlJar</strong> and <strong>H2O</strong> were used. These will not be discussed in detail, since theirs frameworks are slightly different and would go outside the scope of this work.</p>
+
+<h3 id="autosklearn">Autosklearn</h3>
+<p>Autosklearn is a framework developed by the Machine Learning department at the university of Freiburg and Hannover in Germany. It is based on the previous work on the <a href="https://www.automl.org/automl/autoweka/"><strong>Auto-WEKA</strong></a> package for automated selection and hyperparameter optimization of classification algorithms. Auto-WEKA uses algorithms implemented in the <strong>WEKA data mining software</strong> and proposes the CASH problem for automated machine learning processes (c.f. \ref{eqn:automl}). Auto-WEKA approaches the simultaneous process of choosing models and tuning its hyperparameters using Bayesian optimization. For solving the CASH problem both Auto-WEKA, and therefore Autosklearn, make use of a modified version of a SMBO and the SMAC solver. Autosklearn uses the parametrized scikit-learn library and its estimators implemented in Python, which has also been used in previous chapters. In addition to Auto-WEKA, Autosklearn introduces two additional processes to the bayesian optimizer: The first is the use of metadata. Metadata — that is data that summarizes or provides information about other data — was collected from over 140 datasets from the <a href="https://www.openml.org/search?type=data">OpenML data repository</a>. Meta-data helps to speed up the optimization process. With such information, the system is capable of analyzing the given dataset and select initial hyperparameters that work well for a dataset in the repository with similar characteristics. This allows not only to speed up computations, but also increase the accuracy and robustness of the results.</p>
+
+<figure class="image">
+    <p align="center">
+        <img src="autosklearn_method.png" alt="Autosklearn framework (c.f. Feurer, Klein, et al., 2015, p.3; c.f. Gressling, 2019, p.116)" width="800" />     
+    </p>
+    <div style="text-align:center">
+        <figcaption class="figure-caption text-center"><i>Autosklearn framework (c.f. Feurer, Klein, et al., 2015, p.3; c.f. Gressling, 2019, p.116)</i>
+        </figcaption>
+    </div>
+</figure>
+
+<p>A second addition to the framework is the use of automated ensemble learning. Ensemble models  are constructed from all estimators evaluated by the pipeline, in contrast to uniformly weighting each weak learner in the ensemble, e.g. like in Random Forest. The created ensemble uses a greedy approach that only keeps models that increase the accuracy of the overall ensemble. Figure above shows the Autosklearn framework. The framework takes a train dataset $X_{train}$ with a respective objective $Y_{train}$, as well as a validation set $X_{test}$. Additionally, a computational budget $b$ and a specific loss function \(\mathcal{L}\) have to be defined. First the dataset is evaluated on a meta-learning phase, using metadata from a dataset repository to speed up the optimization process via a warm start. The Bayesian optimizer evaluates not only estimators but also steps like data preprocessing and feature preprocessing.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Computational budget</th>
+      <th>720 min</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Resampling strategy</td>
+      <td>$10$-fold cross validation</td>
+    </tr>
+    <tr>
+      <td>Max. number of models in disk</td>
+      <td>No limit</td>
+    </tr>
+    <tr>
+      <td>Number of jobs (parallel)</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <td>Memory limit</td>
+      <td>64 Gb</td>
+    </tr>
+    <tr>
+      <td>Ensemble size</td>
+      <td>50 models (sampled with replacement)</td>
+    </tr>
+    <tr>
+      <td>Hardware</td>
+      <td>Autosklearn version 0.11.1</td>
+    </tr>
+    <tr>
+      <td>Software</td>
+      <td>HPC cluster with 32 CPU cores, 64 GB RAM and running Ubuntu/Linux 20.04.</td>
+    </tr>
+    <tr>
+      <td>Nr. of algorithm runs:</td>
+      <td>342</td>
+    </tr>
+    <tr>
+      <td>Nr. of successful algorithm runs:</td>
+      <td>285</td>
+    </tr>
+    <tr>
+      <td>Nr. of crashed algorithm runs:</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>Nr. of algorithms that exceeded the time limit:</td>
+      <td>52</td>
+    </tr>
+    <tr>
+      <td>Nr. of algorithms that exceeded the memory limit:</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Best pipeline validation score ($R$):</td>
+      <td>0.923</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Evaluated models are saved to memory and then used to construct the ensemble. The generated ensemble can be used to make predictions on new data. The Autosklearn estimator was given data containing all features available, since it was shown in chapter \ref{chap:Benchmarks_data_reduction}, that the difference in performance obtained by dimensionality reduction and feature selection are marginal. For this reason, the complete dataset could be fully explored by AutoML. In addition, the optimization method used by Autosklearn includes feature preprocessing and feature selection evaluation methods inside the search space. Autosklearn handles categorical variables automatically using methods like one-hot encoding, as well as Imputing method for missing data and standardization of features.</p>
+
+<p>In the next step a computational budget needed to be defined. Letting Autosklearn compute with large budgets and for longer periods of time would result in more evaluated pipelines, and therefore increase the probability of finding a better model. There is at the moment no implemented functionality to find a convergence status for the optimization process. This means that Autosklearn will continue analyzing pipelines and ensembles until it uses all the computational budget, even if a local minima was found already. The experiment was performed using the configurations in table above. The optimizer was given 24 hours computational time and was parallelized using a HPC cluster with 32 CPU cores. The number of models saved to disk was not restricted, so that the algorithm could access all models evaluated for building an ensemble. For ensemble building the default of 50 models was kept. The RAM limit budget was set to 64 GB and $10$-fold cross validation was used. After running Autosklearn, 342 algorithms were evaluated, from which 285 successfully completed the fitting process. The remaining did not complete either because of an internal crash in the pipeline or the computational budget or memory was exceeded. The best single pipeline found achieved an $R^{2}$ cross validated score of 0.923. Using this pool of generated pipelines Autosklearn created a weighted ensemble model which is depicted in figure below.</p>
+
+<figure class="image">
+    <p align="center">
+        <img src="ensemble_autosklearn.png" alt="Weighted ensemble model generated by Autosklearn" width="800" />     
+    </p>
+    <div style="text-align:center">
+        <figcaption class="figure-caption text-center"><i>Weighted ensemble model generated by Autosklearn</i>
+        </figcaption>
+    </div>
+</figure>
+
+<p>From the ensemble building procedure, not only the best performing models are chosen for the ensemble, but instead those which, when averaged, achieve the best performance. The final ensemble consists in 8 feature preprocessors and estimators, composed of tree based methods like <strong>Extra trees</strong> and <strong>Random Forests</strong>, boosting models like <strong>Adabooost</strong>, as well as linear models like the <strong>Linear support vector</strong> regressors. Taken as a reference, the best estimator found with a score of 0.923, increases the accuracy to 0.946 on the cross validated set.</p>
+
+<figure class="image">
+    <p align="center">
+        <img src="autosklearn_learning_curve.png" alt="Learning curves for Autosklearn ensemble using RMSE and $R^2$ score metrics" width="800" />     
+    </p>
+    <div style="text-align:center">
+        <figcaption class="figure-caption text-center"><i>Learning curves for Autosklearn ensemble using RMSE and $R^2$ score metrics</i>
+        </figcaption>
+    </div>
+</figure>
+
+<p>Figure above shows the learning curve for Autosklearn ensemble model. Here, similar to the learning curves previously showed, the train and test curves slowly converge to the point where more data is needed for the model to generalize even further. The cross validated RMSE is reduced from 5.564 using Random Forest and Group LASSO down to 4.387, which is over a minute reduction of the target variable. On the holdout validation set, the ensemble model also achieved a marginal lower error of 0.874 in comparison to Random Forest of 0.877. Random Forest achieved very similar performance compared to the ensemble, however further improving just a single estimator, like Random Forest, would eventually reach a limit. With an approach like AutoML, given more data and more computational budget, more pipeline combinations can be evaluated, eventually producing a much better model.</p>
+
+<h3 id="tpot">TPOT</h3>
+
+<p>TPOT, which stands for Tree-based Pipeline Automation Tool, is an AutoML Python library that, like Autosklearn, provides automated optimization of pipelines. In the version used for this work, TPOT primarily implements the scikit-learn library for parametrized estimators and also extends to additional libraries like XGboost and PyTorch-based neuronal networks (TPOT-NN). Models can be also trained and computed using GPU clusters, which reduces the training time significantly, especially with large datasets. TPOT uses a \glsxtrfull{gp} approach to optimize a tree of pipelines. Pipelines are basically represented as trees of mathemarical functions. Here the nodes of the tree are operators, which can be of one of the following types: preprocessors (e.g. One Hot encoding), decomposition functions(e.g. PCA), features selectors (e.g. LASSO or RFE) and estimators (e.g. Random Forest) \parencite{Olson2016}. The process of generating predictions for a given pipeline is to follow the trees structure backwards. The tree based pipeline structure is similar to the one shown in figure \ref{fig:ensemble_autosklearn}. Data inputs the system at the leafs and is transformed on the nodes until reaching an estimator, which outputs results \parencite{Romano2020}.</p>
 
 
 
