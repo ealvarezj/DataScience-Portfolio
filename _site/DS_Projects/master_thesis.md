@@ -359,7 +359,6 @@ Autosklearn is a framework developed by the Machine Learning department at the u
 A second addition to the framework is the use of automated ensemble learning. Ensemble models  are constructed from all estimators evaluated by the pipeline, in contrast to uniformly weighting each weak learner in the ensemble, e.g. like in Random Forest. The created ensemble uses a greedy approach that only keeps models that increase the accuracy of the overall ensemble. Figure above shows the Autosklearn framework. The framework takes a train dataset $X_{train}$ with a respective objective $Y_{train}$, as well as a validation set $X_{test}$. Additionally, a computational budget $b$ and a specific loss function $$\mathcal{L}$$ have to be defined. First the dataset is evaluated on a meta-learning phase, using metadata from a dataset repository to speed up the optimization process via a warm start. The Bayesian optimizer evaluates not only estimators but also steps like data preprocessing and feature preprocessing. 
 
 | Computational budget                              | 720 min                        |
-|------------------------------------------------------------|--------------------------------------|
 | Resampling strategy                               | $10$-fold cross validation           |
 | Max. number of models in disk                     | No limit                             |
 | Number of jobs (parallel)                         | 32                                   |
@@ -392,5 +391,64 @@ Figure above shows the learning curve for Autosklearn ensemble model. Here, simi
 
 ### TPOT
 
-TPOT, which stands for Tree-based Pipeline Automation Tool, is an AutoML Python library that, like Autosklearn, provides automated optimization of pipelines. In the version used for this work, TPOT primarily implements the scikit-learn library for parametrized estimators and also extends to additional libraries like XGboost and PyTorch-based neuronal networks (TPOT-NN). Models can be also trained and computed using GPU clusters, which reduces the training time significantly, especially with large datasets. TPOT uses a \glsxtrfull{gp} approach to optimize a tree of pipelines. Pipelines are basically represented as trees of mathemarical functions. Here the nodes of the tree are operators, which can be of one of the following types: preprocessors (e.g. One Hot encoding), decomposition functions(e.g. PCA), features selectors (e.g. LASSO or RFE) and estimators (e.g. Random Forest) \parencite{Olson2016}. The process of generating predictions for a given pipeline is to follow the trees structure backwards. The tree based pipeline structure is similar to the one shown in figure \ref{fig:ensemble_autosklearn}. Data inputs the system at the leafs and is transformed on the nodes until reaching an estimator, which outputs results \parencite{Romano2020}. 
+TPOT, which stands for Tree-based Pipeline Automation Tool, is an AutoML Python library that, like Autosklearn, provides automated optimization of pipelines. In the version used for this work, TPOT primarily implements the scikit-learn library for parametrized estimators and also extends to additional libraries like XGboost and PyTorch-based neuronal networks (TPOT-NN). Models can be also trained and computed using GPU clusters, which reduces the training time significantly, especially with large datasets. TPOT uses a genetic programming approach to optimize a tree of pipelines. Pipelines are basically represented as trees of mathemarical functions. Here the nodes of the tree are operators, which can be of one of the following types: preprocessors (e.g. One Hot encoding), decomposition functions(e.g. PCA), features selectors (e.g. LASSO or RFE) and estimators (e.g. Random Forest). The process of generating predictions for a given pipeline is to follow the trees structure backwards. The tree based pipeline structure is similar to the one shown before for autosklearn. Data inputs the system at the leafs and is transformed on the nodes until reaching an estimator, which outputs results. 
+
+TPOT was initialized similarly to Autosklearn, with the same Hardware and computational budget. However, due to the differences between frameworks, different hyperparameters have to be defined and these are summarized in table below. TPOT can automatically set the memory limit needed when running the optimization process. For each generation evaluated, the population size --- that is, the number of individuals to retain every generation --- can be set, setting this parameter to higher values could increase the performance of the optimization process. 
+
+| Computational budget                    | 720 minutes              |
+| Resampling strategy                     | $10$-fold cross validation |
+| Max. number of models in disk           | No limit                   |
+| Number of jobs (parallel)               | 32                         |
+| Memory limit                            | Automatic                  |
+| population size                         | 100                        |
+| Hardware:                               |HPC cluster with 32 CPU cores, 64 GB RAM and running Ubuntu/Linux 20.04.|
+| Software:                 |  TPOT version 0.11.7 |
+| Nr. of evaluated generations:           | 100                        |
+| Best pipeline validation score (RMSE): | 5.075                      |
+
+
+The generated pipeline in figure below consists in a combination of stacking estimators and feature preprocessing. Stacking is an ensemble method, in which the predictions of multiple estimators (level-0 estimators) are added together into a new dataset consisting of synthetic features. Then, a final estimator (meta-estimator) is trained on the resulting dataset. The constructed pipeline starts by fitting a **Gradient Boosting Regressor** and the predictions are scaled using a **Robust Scaler** preprocessor. This scales features using methods robust to outliers. The transformed data is passed on to a **Linear Support Vector Regressor**, which uses the transformed predictions from the previous estimator to fit the model. The results are then horizontally stacked as a new feature in the dataset. This process continues until the last estimator in the ensemble (**Random Forest Regressor**) is fitted. The resulting dataset of synthetical features is then used to fit the Meta-estimator, in this case a **Random Forest Regressor**.
+
+{% include image.html url="tpot_pipeline.png" description="TPOT pipeline" width="800" %}
+
+
+At the end of the optimization run, TPOT found the best performing pipeline achieving a RMSE of 5.075, which corresponds to a $R^{2}$ value of 0.93. Figure below shows the learning curves for the best pipeline found by TPOT. The learning curve shows that the model is overfitting, since it achieves better performance on the training set but worst on the test set. However, both curves decrease as more data is added to the model. Recalling the curves before, the same behavior can be observed. In conclusion, in order to reduce the overfitting problem; given that the convergence tendency between both train and test scores remains, more data is needed. In the next chapter, a benchmark between AutoML mehtods summarizes the findings of the model building process. 
+
+{% include image.html url="tpot_learning_curve.png" description="Learning curves for TPOT stacking Meta-estimator, using RMSE and R 2 score metrics." width="800" %}
+
+
+
+
+
+## Benchmark of AutoML libraries
+
+
+Before going into the benchmark results, it is important to remark, that all the AutoML methods were fitted on a similar dataset that the one used for the manual model. Particularly, two features were removed from the dataset. It would not be rasonable to remove those two variables, which happen to be highly correlated with the target. However, the reason behind this decision, has to do with the availability for collecting those variables in a preliminary stage in the forging process, which would cause data leakeage.
+
+This data is only accurately generated after an initial production run or when a simulation model is available (which is not always the case, due to the costly procedure of designing and running FEM simulations). If a model is trained including those variables, and no data is available in a production environment, no predictions can be made. 
+
+| Criteria | Manual ML | TPOT  | Autosklearn | H2O    | Mljar  |
+|-----------------------------------|-----------|-------|-------------|--------|--------|
+| Train - CV RMSE                   | 5.564     | 4.96  | 4.388       | 5.322  | 5.435  |
+| Train - CV $R^{2}$                | 0.904     | 0.93  | 0.946       | 0.93   | 0.924  |
+| Hold Out test - CV RMSE           | 7.455     | 7.026 | 6.809       | 6.73   | 7.044  |
+| Hold Out test - CV $R^{2}$        | 0.878     | 0.867 | 0.875       | 0.877  | 0.866  |
+| Validation dataset - CV RMSE      | -         | 9.245 | 10.901      | 12.337 | 41.96  |
+| Validation dataset - CV $R^{2}$   | -         | 0.82  | 0.74        | 0.667  | -2.857 |
+
+
+Models were benchmarked on the following datasets: First, performance was measured on the train dataset for which cross validation was used. Second, the trained model was used to make prediction onto the Hold Out test dataset, which the algorithm haven't seen before. Since both datasets were sampled from the initial dataset, their distributions are similar. This second benchmark gives a better idea of the generalization ability of the model. The behavior was already discussed by looking at the individual learning curves. At last, a complete new set of observations (the validation set) are introduced. This new dataset consists of customer requests, that were internally processed but did not make it into production(e.g. customer did not buy the product). Yet they carry all the required information to be predicted by the model. From table above it is possible to observe that on the Train dataset, all models performed similarly, with the RMSE score ranging between 4 and 5.5. The $R^{2}$ score remained above 0.9. On the Hold out dataset, the models start to overfit, not generalizing well on unseen data. As a result, the RMSE increases, this time ranging between 6.5 and 7.5. When exposed to the validation set, which contains outliers --- since the proposals are generated based on experience and may contain new features, it is possible that they are treated as outliers ---, performance decreases even further with some extreme cases like the Mljar pipeline. As mentioned at the beginning of this chapter, the Random Forest Regressor which was created manually, cannot be used to predict the validation dataset, since those variable values are not available. Finally, one is interested in a model that has the best generalization capabilities. This comparison shows that, TPOT pipelines are able to outperform the other models. For this reason, it was chosen as the best overall model in this work. 
+
+
+
+### Deployment of Machine Learning models on a production environment
+
+Machine Learning models alone, are not very useful and have to be implemented in some sort into a production environment. In order to make this technology available to everyone in the company, models had to be integrated in an intuitive and easy way for interaction. The user should be able to give the tool the necessary input information, and it should be able to parse data and automatically assign right data types. The user should not be worried about the preprocessing of the data and be able to easy access the tool regardless their own hardware.  The **WSK ML Sandkasten**, is an application for interaction with different machine learning models. It is developed with the [**Streamlit**](https://streamlit.io/) Python package. This open-source library allows for the creation of Web-based applications using only Python code. Since it is Web-based, it can be used in nearly any computer, and is deployed on the companies server infrastructure. Additionally, the application allows fur multi-user login and can be password protected. To make it more intuitive to the user, it guides the user step by step asking gradually for more information.
+
+> At this point I am only allowed to show modified screenshots that do not compromise the data of the company
+
+
+{% include image.html url="WSK_Sandkasten.png" description="WSK ML Sandbox interface on a web browser" width="800" %}
+
+Figure above shows the application interface on a web browser. Additionally, to the prediction output, predictions can also be computed in batch. Here the user can provide a file (in .CSV format) which contains data for each observation, which can be formatted by a provided template. The results can be downloaded as a CSV back for further processing. Another feature which is built into the application, is a recommendation system. This feature provides the user, at the end of the prediction process, with a list, containing product's that are similar to the one given to the system. It uses an Unsupervised Learning algorithm which clusters the data in the product's database according to the some relevant features. Then the clustered dataset is passed to a Supervised Learning classification model, which given the user inputs for the regression model, finds the corresponding cluster in the product's database. This feature is specially useful for the user, since it helps find similar product's from which the manufacturing process can be adapted to. It also resembles the manual process which is used to estimate the cycle time by looking at similar product's and giving a rough estimate based on that information and experience.    
 
