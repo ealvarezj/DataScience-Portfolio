@@ -3,6 +3,6 @@ title: Data Science Portfolio
 description: Elias Alvarez Jaramillo
 markdown: kramdown
 kramdown:
-    math_engine: katex
+  math_engine: mathjax
 layout: wide
 
