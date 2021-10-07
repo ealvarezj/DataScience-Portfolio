@@ -159,29 +159,33 @@ To overcome the problem of feature selection with dummy variables, there is a me
 
 
 
-$$ \begin{equation}
+$$ 
+\begin{align}
         \sum_{i = 1}^{n} \left(y_{i} - \beta_{0} - \sum_{j = 1}^{p} \beta_{j}x_{ij}  \right)^{2} + \lambda \sum_{j = 1}^{p} \beta_{j}^{2} &\Longleftrightarrow  RSS + \lambda \sum_{j = 1}^{p} \beta_{j}^{2} & \text{(\textbf{Ridge})} \label{eqn:ridge_1}
         \\
         \sum_{i = 1}^{n} \left(y_{i} - \beta_{0} - \sum_{j = 1}^{p} \beta_{j}x_{ij}  \right)^{2} + \lambda \sum_{j = 1}^{p} \left\lvert \beta_{j} \right\rvert &\Longleftrightarrow   RSS + \lambda \sum_{j = 1}^{p} \left\lvert \beta_{j} \right\rvert & \text{(\textbf{Lasso})}\label{eqn:lasso_1}
-\end{equation} $$
+\end{align}
+$$
 
 
+three norms $$\ell_{0}$$, $$\ell_{1}$$, $$\ell_{2}$$ can be considered:
 
-\noindent
-three norms $\ell_{0}$, $\ell_{1}$, $\ell_{2}$ can be considered:
-
+$$
 \begin{equation}
     \ell_{0} := \left\lVert \beta\right\rVert_{0} = \sum_{j = 1}^{p} 1\left\{\beta_{j} \neq 0 \right\}, \quad  \ell_{1} := \left\lVert \beta\right\rVert_{1} = \sum_{j = 1}^{p} \left\lvert \beta_{j}\right\rvert, \quad \ell_{2} := \left\lVert \beta\right\rVert_{2} = \left(\sum_{j = 1}^{p} \beta^{2}\right)^{1 / 2}   
 \end{equation}
+$$
+  
+the optimization problem becomes:
 
- \noindent   
- the optimization problem becomes:
-    
+$$   
  \begin{align}
     \underset{\beta \in \mathbb{R}^{p}}{\argmin} ~ RSS + \lambda \sum_{j = 1}^{p} \beta_{j}^{2} & \Longleftrightarrow  \underset{\beta \in \mathbb{R}^{p}}{\argmin} ~ \left\lVert \mathbf{y} - \mathbf{X}\beta \right\rVert_{2}^{2} + \lambda \left\lVert \beta\right\rVert_{2}^{2} & \text{(\textbf{Ridge})}\label{eqn:ridge_2}
     \\
     \underset{\beta \in \mathbb{R}^{p}}{\argmin} ~ RSS + \lambda \sum_{j = 1}^{p} \left\lvert \beta_{j} \right\rvert & \Longleftrightarrow  \underset{\beta \in \mathbb{R}^{p}}{\argmin} ~ \left\lVert \mathbf{y} - \mathbf{X}\beta \right\rVert_{2}^{2} + \lambda \left\lVert \beta\right\rVert_{1} & \text{(\textbf{Lasso})}\label{eqn:lasso_2}
  \end{align}
+$$
+
 
 The penalization $\left\lVert \beta\right\rVert_{2}$ used for Ridge is formalized as the $\ell_{2}$ norm  --- usually known as the \textbf{Euclidean norm} --- and $\left\lVert \beta\right\rVert_{1}$ as the $\ell_{1}$ norm --- known as the \textbf{Manhattan norm} --- for lasso. If $\lambda = 0$, then both models solve \glsxtrshort{ols} (c.f. equation \ref{eqn:linear_regression_basic}). $\ell_{1}$ and $\ell_{2}$ constrain the size of the coefficients, e.g. the increase of a coefficient is only possible if it leads to a decrease in the RSS and $\lambda > 0$. In turn, ncreasing $\lambda$ would force some coefficient towards zero. If one would like to reduce the feature space, using the $\ell_{2}$ norm is not a viable solution, since the coefficients would never be able to be exactly zero. By definition, Ridge regression is non-sparse and will contain all zero coefficient for the solution.  The lasso model using the $\ell_{1}$ norm allows for sparsity and as $\lambda$ increases, sparsity increases as well. This regularization approach allows coefficients to be exactly zero and therefore remove those variables from the model, where $\left(x_{i}\beta_{i}\right), ~ \beta_{i} = 0$. Applying lasso to the dataset would result in a sparse model, but the issue of grouped variables remains. Group lasso, which aims exactly at solving that issue solves the following optimization problem \parencites{Yuan2006}{Friedman2010}{Simon2012}{Lim2013}{Meier2008}{AmaralSantos2016}{Tibshirani2017}{Rachmawati2017}: 
 
